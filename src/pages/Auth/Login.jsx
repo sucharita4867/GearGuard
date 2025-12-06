@@ -19,10 +19,9 @@ const Login = () => {
 
         <div className="card bg-base-100 w-full max-w-sm">
           <form className="card-body">
-            <div className="text-primary text-center border ">
+            <div className="text-primary text-center ">
               <Logo />
             </div>
-            {/* <h2 className="text-3xl font-bold text-center">Welcome Back 👋</h2> */}
             <p className="text-center mb-4 text-primary text-base">
               Login to continue
             </p>
