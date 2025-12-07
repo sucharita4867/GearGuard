@@ -6,6 +6,7 @@ import {
   signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../Firebase/Firebase-init";
 
@@ -42,6 +43,11 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // update user profile
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
+
   // Track logged-in user globally
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -63,6 +69,7 @@ const AuthProvider = ({ children }) => {
     registerUser,
     logOut,
     setUser,
+    updateUserProfile,
   };
 
   return (

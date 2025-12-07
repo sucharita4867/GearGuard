@@ -5,11 +5,11 @@ import { Link, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-// import useAuth from "../../Hooks/useAuth";
 import { AuthContext } from "../../Context/AuthProvider";
+import axios from "axios";
 
 const EmployeeRegister = () => {
-  const { registerUser, setUser } = useContext(AuthContext);
+  const { registerUser, setUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -18,9 +18,33 @@ const EmployeeRegister = () => {
   } = useForm();
 
   const handleRegister = (data) => {
-    console.log(data);
+    // console.log("after register employes", data.photo[0]);
+    const profileImg = data.photo[0];
+
     registerUser(data.email, data.password)
       .then(() => {
+        const formData = new FormData();
+        formData.append("image", profileImg);
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_IMG_BB_API_KEY
+        }`;
+
+        axios.post(image_API_URL, formData).then((res) => {
+          // console.log("after image upload", res.data.data.url);
+
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+          updateUserProfile(userProfile)
+            .then(()=>{
+              console.log('user profile update done')
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -69,7 +93,7 @@ const EmployeeRegister = () => {
                 )}
               </div>
               {/* image */}
-              {/* <div>
+              <div>
                 <label className="label">Photo</label>
                 <input
                   type="file"
@@ -80,7 +104,7 @@ const EmployeeRegister = () => {
                 {errors.photo?.type === "required" && (
                   <p className="text-red-600">Photo is required</p>
                 )}
-              </div> */}
+              </div>
               {/* email */}
               <div>
                 <label className="label">Email</label>
@@ -159,7 +183,4 @@ const EmployeeRegister = () => {
 
 export default EmployeeRegister;
 
-// name: "Full Name",
-//   email: "personal@email.com",
-//   password: "min 6 characters",
-//   dateOfBirth: "YYYY-MM-DD",
+

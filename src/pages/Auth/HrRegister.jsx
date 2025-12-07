@@ -5,13 +5,15 @@ import registerAnimation from "../../assets/animations/register.json";
 import { Link, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
-// import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider";
+import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const HrRegister = () => {
-  const { registerUser } = useContext(AuthContext)
+  const { registerUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -20,8 +22,50 @@ const HrRegister = () => {
 
   const handleRegister = (data) => {
     console.log(data);
+    const profileImg = data.companyLogo[0];
+    console.log(profileImg);
+
+    console.log(data);
     registerUser(data.email, data.password)
       .then(() => {
+        const formData = new FormData();
+        formData.append("image", profileImg);
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_IMG_BB_API_KEY
+        }`;
+        axios.post(image_API_URL, formData).then((res) => {
+          const photoURl = res.data.data.url;
+          // create user in database
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURl: photoURl,
+          };
+          userInfo;
+          axiosSecure
+            .post("/users".userInfo)
+            .then((res) => {
+              if (res.data.insertedId) {
+                console.log("user created in the database");
+              }
+            })
+            .catch((err) => {
+              console.log(err, "user error in database");
+            });
+
+          const userProfile = {
+            displayName: data.name,
+            photoURL: photoURl,
+          };
+          updateUserProfile(userProfile)
+            .then(() => {
+              console.log("user profile update done");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+
         Swal.fire({
           position: "top-end",
           icon: "success",
