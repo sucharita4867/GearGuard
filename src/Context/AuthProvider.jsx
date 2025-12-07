@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../Firebase/Firebase-init";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 
 const googleProvider = new GoogleAuthProvider();

@@ -10,7 +10,7 @@ const Navbar = () => {
   console.log(user);
 
   const handleLogOut = () => {
-    logOut
+    logOut()
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -20,14 +20,11 @@ const Navbar = () => {
           timer: 1500,
         });
       })
-      .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something LogOut wrong!",
-        });
+      .catch((err) => {
+        console.log(err);
       });
   };
+ 
   const links = (
     <>
       <li>

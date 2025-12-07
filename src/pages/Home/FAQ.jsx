@@ -32,7 +32,7 @@ const FAQ = () => {
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl text-center font-bold text-gray-800 mb-10"
+        className="text-3xl md:text-4xl text-center font-bold text-primary mb-10"
       >
         Frequently Asked Questions
       </motion.h2>

@@ -29,7 +29,7 @@ const ExtraSection = () => {
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-gray-800"
+          className="text-3xl md:text-4xl font-bold text-primary"
         >
           How It Works
         </motion.h2>

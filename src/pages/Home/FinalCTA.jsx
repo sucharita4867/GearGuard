@@ -9,7 +9,7 @@ const FinalCTA = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="text-3xl md:text-4xl font-bold"
+        className="text-3xl md:text-4xl font-bold text-primary"
       >
         Ready to Manage Your Company Assets Smarter?
       </motion.h2>

@@ -2,10 +2,11 @@ import React from "react";
 import { NavLink } from "react-router";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+
 const Banner = () => {
   return (
     <div
-      className="relative mt-10 w-11/12 mx-auto h-[90vh] bg-cover bg-center flex items-center rounded-2xl overflow-hidden"
+      className="relative mt-10 md:p-10 w-11/12 mx-auto h-[90vh] bg-cover bg-center flex items-center rounded-2xl overflow-hidden"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=60')`,
       }}
@@ -18,7 +19,7 @@ const Banner = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative text-white p-8 w-11/12 md:w-1/2 space-y-5"
+        className="relative text-white p-6 md:p-10 w-full md:w-1/2 space-y-5"
       >
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
           Smart Asset Management for Modern Companies
@@ -29,7 +30,7 @@ const Banner = () => {
           all in one professional dashboard.
         </p>
 
-        <div className="flex gap-4 mt-4">
+        <div className="flex flex-wrap gap-4 mt-4">
           {/* Login Button */}
           <NavLink to="/login" className="btn btn-secondary text-white">
             Login
