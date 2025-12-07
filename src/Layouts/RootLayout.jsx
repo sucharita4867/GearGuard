@@ -8,7 +8,7 @@ const RootLayout = () => {
     <div className="bg-[#eaeced]">
       <div className="">
         <Navbar />
-        <div className=" w-11/12 mx-auto">
+        <div className=" ">
           <Outlet />
         </div>
         <Footer />
