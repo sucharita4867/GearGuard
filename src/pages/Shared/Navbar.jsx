@@ -73,8 +73,11 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-2">
           {/* Register Dropdown */}
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-outline text-white">
+          <div className="dropdown dropdown-hover">
+            <label
+              tabIndex={0}
+              className="btn btn-outline text-white border-white hover:bg-white hover:text-black"
+            >
               Register
             </label>
             <ul
@@ -82,10 +85,10 @@ const Navbar = () => {
               className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-black"
             >
               <li>
-                <NavLink to="/register-hr">HR Register</NavLink>
+                <NavLink to="/register-hr">Register as HR</NavLink>
               </li>
               <li>
-                <NavLink to="/register-employee">Employee Register</NavLink>
+                <NavLink to="/register-employee">Register as Employee</NavLink>
               </li>
             </ul>
           </div>
@@ -94,7 +97,8 @@ const Navbar = () => {
           {user ? (
             <button
               onClick={handleLogOut}
-              className="btn p-6 hover:bg-[#1da040d6] bg-secondary text-white w-full mt-1"
+              className="btn btn-secondary text-white
+               hover:bg-[#1da040d6] "
             >
               LogOut
             </button>
