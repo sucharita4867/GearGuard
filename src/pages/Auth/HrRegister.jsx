@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import Logo from "../../Components/Logo";
 import registerAnimation from "../../assets/animations/register.json";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
+// import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../Context/AuthProvider";
 
-const Register = () => {
+const HrRegister = () => {
+  const { registerUser } = useContext(AuthContext)
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,6 +20,24 @@ const Register = () => {
 
   const handleRegister = (data) => {
     console.log(data);
+    registerUser(data.email, data.password)
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "HR registred Successfull",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something register wrong!",
+        });
+      });
   };
 
   return (
@@ -27,14 +50,11 @@ const Register = () => {
         {/* ---- Form Section ---- */}
 
         <div className="card bg-base-100 w-full max-w-sm">
-          <div className="text-primary text-center ">
-            <Logo />
-          </div>
-          <p className="text-center mb-4 text-primary text-base">
-            Create an Account
+          <p className="text-center text-primary text-xl mt-2">
+            HR Create an Account
           </p>
           <form onSubmit={handleSubmit(handleRegister)} className="card-body">
-            <fieldset className="fieldset space-y-2">
+            <fieldset className="fieldset space-y-1">
               {/* name */}
               <div>
                 <label className="label">Name</label>
@@ -48,17 +68,30 @@ const Register = () => {
                   <p className="text-red-600">Name is required</p>
                 )}
               </div>
-              {/* image */}
+              {/* Company Name */}
               <div>
-                <label className="label">Photo</label>
+                <label className="label">Company Name</label>
+                <input
+                  type="text"
+                  {...register("companyName", { required: true })}
+                  className="input input-bordered w-full"
+                  placeholder="Company Name"
+                />
+                {errors.companyName?.type === "required" && (
+                  <p className="text-red-600">Company Name is required</p>
+                )}
+              </div>
+              {/* companyLogo */}
+              <div>
+                <label className="label">companyLogo</label>
                 <input
                   type="file"
-                  {...register("photo", { required: true })}
+                  {...register("companyLogo", { required: true })}
                   className="file-input"
-                  placeholder="Your Photo"
+                  placeholder="companyLogo"
                 />
-                {errors.photo?.type === "required" && (
-                  <p className="text-red-600">Photo is required</p>
+                {errors.companyLogo?.type === "required" && (
+                  <p className="text-red-600">companyLogo is required</p>
                 )}
               </div>
               {/* email */}
@@ -104,6 +137,18 @@ const Register = () => {
                   </p>
                 )}
               </div>
+              {/* Date of Birth */}
+              <div>
+                <label className="label">Date of Birth</label>
+                <input
+                  type="date"
+                  {...register("dob", { required: true })}
+                  className="input input-bordered w-full"
+                />
+                {errors.dob?.type === "required" && (
+                  <p className="text-red-600">Date of Birth is required</p>
+                )}
+              </div>
 
               <button className="btn p-6 hover:bg-[#1da040d6] bg-secondary text-white w-full mt-1">
                 Register
@@ -125,4 +170,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default HrRegister;
