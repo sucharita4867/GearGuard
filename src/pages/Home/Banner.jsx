@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const Banner = () => {
   return (
     <div
-      className="relative my-8 w-full h-[90vh] bg-cover bg-center flex items-center rounded-2xl overflow-hidden"
+      className="relative mt-10 w-full h-[90vh] bg-cover bg-center flex items-center rounded-2xl overflow-hidden"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=60')`,
       }}

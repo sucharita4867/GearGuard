@@ -7,7 +7,7 @@ import {
 
 const About = () => {
   return (
-    <section className="w-11/12 mx-auto py-20 grid md:grid-cols-2 gap-10 items-center">
+    <section className=" py-20 grid md:grid-cols-2 gap-10 items-center">
       {/* Image */}
       <div>
         <img
