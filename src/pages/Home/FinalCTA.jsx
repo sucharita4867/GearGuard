@@ -25,7 +25,7 @@ const FinalCTA = () => {
 
       <motion.div whileHover={{ scale: 1.08 }}>
         <NavLink
-          to="/register-hr"
+          to="/login"
           className="btn bg-secondary text-white  font-semibold border-none"
         >
           Get Started Now
