@@ -10,6 +10,8 @@ import AssetList from "../pages/AssetList";
 import AllRequests from "../pages/AllRequests";
 import AllEmployee from "../pages/AllEmployee";
 import AddAsset from "../pages/AddAsset";
+import PrivateRoute from "./PrivateRoute";
+import EmployeeRoute from "./EmployeeRoute";
 
 export const router = createBrowserRouter([
   {
@@ -22,19 +24,37 @@ export const router = createBrowserRouter([
       },
       {
         path: "/asset-list",
-        Component: AssetList,
+        element: (
+          <PrivateRoute>
+            <AssetList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/asset-add",
-        Component: AddAsset,
+        element: (
+          <EmployeeRoute>
+            <PrivateRoute>
+              <AddAsset />
+            </PrivateRoute>
+          </EmployeeRoute>
+        ),
       },
       {
         path: "/all-requests",
-        Component: AllRequests,
+        element: (
+          <PrivateRoute>
+            <AllRequests />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-employee",
-        Component: AllEmployee,
+        element: (
+          <PrivateRoute>
+            <AllEmployee />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
   // Track logged-in user globally
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("Current User:", currentUser);
+      // console.log("Current User:", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
@@ -64,6 +64,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    setLoading,
     googleLogin,
     signIn,
     registerUser,

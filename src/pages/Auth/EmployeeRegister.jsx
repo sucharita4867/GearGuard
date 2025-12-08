@@ -20,7 +20,6 @@ const EmployeeRegister = () => {
 
   const handleRegister = (data) => {
     const { dob, password, email, name } = data;
-    // console.log("after register employes", data.photo[0]);
     const profileImg = data.photo[0];
 
     registerUser(data.email, data.password)
@@ -32,7 +31,6 @@ const EmployeeRegister = () => {
         }`;
 
         axios.post(image_API_URL, formData).then((res) => {
-          // console.log("after image upload", res.data.data.url);
           saveOrUpdateUser({
             role: "Employee",
             name,
