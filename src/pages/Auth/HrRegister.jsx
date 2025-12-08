@@ -8,12 +8,13 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider";
 import axios from "axios";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { saveOrUpdateUser } from "../../utils";
+// import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const HrRegister = () => {
   const { registerUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -21,11 +22,12 @@ const HrRegister = () => {
   } = useForm();
 
   const handleRegister = (data) => {
-    console.log(data);
+    const { email, name, companyName, password, dateOfBirth } = data;
+    // console.log(email, name, companyName, photoURl, password, dateOfBirth);
     const profileImg = data.companyLogo[0];
     console.log(profileImg);
 
-    console.log(data);
+    // console.log(data);
     registerUser(data.email, data.password)
       .then(() => {
         const formData = new FormData();
@@ -33,25 +35,19 @@ const HrRegister = () => {
         const image_API_URL = `https://api.imgbb.com/1/upload?key=${
           import.meta.env.VITE_IMG_BB_API_KEY
         }`;
+
         axios.post(image_API_URL, formData).then((res) => {
           const photoURl = res.data.data.url;
           // create user in database
-          const userInfo = {
-            email: data.email,
-            displayName: data.name,
-            photoURl: photoURl,
-          };
-          userInfo;
-          axiosSecure
-            .post("/users".userInfo)
-            .then((res) => {
-              if (res.data.insertedId) {
-                console.log("user created in the database");
-              }
-            })
-            .catch((err) => {
-              console.log(err, "user error in database");
-            });
+          saveOrUpdateUser({
+            role: "Hr",
+            email,
+            name,
+            companyName,
+           companyLogo : photoURl,
+            password,
+            dateOfBirth,
+          });
 
           const userProfile = {
             displayName: data.name,

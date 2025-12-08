@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider";
 import axios from "axios";
+import { saveOrUpdateUser } from "../../utils";
 
 const EmployeeRegister = () => {
   const { registerUser, setUser, updateUserProfile } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const EmployeeRegister = () => {
   } = useForm();
 
   const handleRegister = (data) => {
+    const { dob, password, email, name } = data;
     // console.log("after register employes", data.photo[0]);
     const profileImg = data.photo[0];
 
@@ -31,14 +33,22 @@ const EmployeeRegister = () => {
 
         axios.post(image_API_URL, formData).then((res) => {
           // console.log("after image upload", res.data.data.url);
+          saveOrUpdateUser({
+            role: "Employee",
+            name,
+            email,
+            password,
+            dob,
+            image: res.data.data.url,
+          });
 
           const userProfile = {
             displayName: data.name,
             photoURL: res.data.data.url,
           };
           updateUserProfile(userProfile)
-            .then(()=>{
-              console.log('user profile update done')
+            .then(() => {
+              console.log("user profile update done");
             })
             .catch((error) => {
               console.log(error);
@@ -182,5 +192,3 @@ const EmployeeRegister = () => {
 };
 
 export default EmployeeRegister;
-
-

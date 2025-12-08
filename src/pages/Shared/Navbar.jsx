@@ -29,7 +29,15 @@ const Navbar = () => {
       <li>
         <NavLink to="/asset-list">Asset List</NavLink>
       </li>
-      
+      <li>
+        <NavLink to="/asset-add"> Add Asset</NavLink>
+      </li>
+      <li>
+        <NavLink to="/all-requests"> All Requests</NavLink>
+      </li>
+      <li>
+        <NavLink to="/all-employee"> My Employee</NavLink>
+      </li>
     </>
   );
 
@@ -58,7 +66,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost text-xl">
+          <Link to="/" className="btn btn-ghost text-xl">
             <Logo />
           </Link>
         </div>

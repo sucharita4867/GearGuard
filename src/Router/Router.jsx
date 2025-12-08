@@ -7,6 +7,9 @@ import HrRegister from "../pages/Auth/HrRegister";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import EmployeeRegister from "../pages/Auth/EmployeeRegister";
 import AssetList from "../pages/AssetList";
+import AllRequests from "../pages/AllRequests";
+import AllEmployee from "../pages/AllEmployee";
+import AddAsset from "../pages/AddAsset";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +23,18 @@ export const router = createBrowserRouter([
       {
         path: "/asset-list",
         Component: AssetList,
+      },
+      {
+        path: "/asset-add",
+        Component: AddAsset,
+      },
+      {
+        path: "/all-requests",
+        Component: AllRequests,
+      },
+      {
+        path: "/all-employee",
+        Component: AllEmployee,
       },
     ],
   },
