@@ -7,7 +7,7 @@ import useRole from "../../Hooks/useRole";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [ role ] = useRole();
+  const [role] = useRole();
 
   const handleLogOut = () => {
     logOut()
@@ -125,10 +125,7 @@ const Navbar = () => {
             <div className="flex items-center gap-3">
               <div className="avatar">
                 <div className="w-10 rounded-full border border-white">
-                  <img
-                    src={user?.photoURL || "https://i.ibb.co/5xVqcD1/user.png"}
-                    alt="user"
-                  />
+                  <img src={user?.photoURL} alt="user" />
                 </div>
               </div>
 

@@ -1,16 +1,9 @@
-import Lottie from "lottie-react";
-import loadingAnim from "../assets/animations/loadingThisProject.json";
-// import loadingAnim from "../assets/animations/loading.json";
-
+import React from "react";
 const Loading = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-      <div className="w-40">
-        <Lottie animationData={loadingAnim} loop={true} />
-      </div>
-      {/* <p className="mt-4 text-primary font-semibold text-lg animate-pulse">
-        Securing Your Dashboard...
-      </p> */}
+    <div className="flex flex-col items-center justify-center  ">
+      {/* Dots animation */}
+      <span className="loading loading-dots loading-lg text-primary mt-4"></span>
     </div>
   );
 };
