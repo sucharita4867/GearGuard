@@ -9,7 +9,7 @@ const AddAsset = () => {
   const { user } = useContext(AuthContext);
   const { data: userDB } = useUserProfile();
   // console.log("user in DB", );
-  console.log(user);
+  // console.log(user);
   const {
     register,
     handleSubmit,
@@ -28,7 +28,7 @@ const AddAsset = () => {
 
     const imageURL = imgResponse.data.data.url;
 
-    console.log(data, imageURL);
+    // console.log(data, imageURL);
 
     const finalAssetData = {
       productName: data.productName,
