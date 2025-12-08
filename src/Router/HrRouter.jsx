@@ -3,6 +3,7 @@ import { AuthContext } from "../Context/AuthProvider";
 import useRole from "../Hooks/useRole";
 import Forbidden from "../Components/Forbidden ";
 import { Navigate } from "react-router";
+import Loading from "../Components/Loading";
 
 const HrRouter = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const HrRouter = ({ children }) => {
 
   // Still signing in (firebase loading)
   if (loading || roleLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading/>
   }
 
   if (!user) {

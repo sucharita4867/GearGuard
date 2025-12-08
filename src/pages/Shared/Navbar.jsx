@@ -3,9 +3,11 @@ import Logo from "../../Components/Logo";
 import { Link, NavLink } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider";
+import useRole from "../../Hooks/useRole";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [ role ] = useRole();
 
   const handleLogOut = () => {
     logOut()
@@ -20,13 +22,8 @@ const Navbar = () => {
       })
       .catch((err) => console.log(err));
   };
-
-  const links = (
+  const hrLinks = (
     <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-
       <li>
         <NavLink to="/asset-list">Asset List</NavLink>
       </li>
@@ -39,6 +36,10 @@ const Navbar = () => {
       <li>
         <NavLink to="/all-employee"> My Employee</NavLink>
       </li>
+    </>
+  );
+  const employeeLinks = (
+    <>
       <li>
         <NavLink to="/my-assets"> My Assets</NavLink>
       </li>
@@ -73,7 +74,11 @@ const Navbar = () => {
               </svg>
             </div>
             <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
-              {links}
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              {role === "Hr" && hrLinks}
+              {role === "Employee" && employeeLinks}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost text-xl">
@@ -82,7 +87,13 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            {role === "Hr" && hrLinks}
+            {role === "Employee" && employeeLinks}
+          </ul>
         </div>
 
         <div className="navbar-end gap-3">
@@ -110,7 +121,6 @@ const Navbar = () => {
             </>
           )}
 
-          {/* 👉 If USER logged in: Show Profile + Logout */}
           {user && (
             <div className="flex items-center gap-3">
               <div className="avatar">

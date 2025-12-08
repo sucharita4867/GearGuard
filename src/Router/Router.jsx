@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
         element: (
           <EmployeeRoute>
             <PrivateRoute>
-              <MyAssets />,
+              <MyAssets />
             </PrivateRoute>
           </EmployeeRoute>
         ),
@@ -83,7 +83,7 @@ export const router = createBrowserRouter([
         element: (
           <EmployeeRoute>
             <PrivateRoute>
-              <MyTeam />,
+              <MyTeam />
             </PrivateRoute>
           </EmployeeRoute>
         ),
@@ -93,7 +93,7 @@ export const router = createBrowserRouter([
         element: (
           <EmployeeRoute>
             <PrivateRoute>
-              <RequestAsset />,
+              <RequestAsset />
             </PrivateRoute>
           </EmployeeRoute>
         ),
