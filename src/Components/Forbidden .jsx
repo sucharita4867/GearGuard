@@ -20,12 +20,8 @@ const Forbidden = () => {
       </p>
 
       <div className="my-3 space-x-3">
-        <Link to="/" className="btn btn-primary text-black">
+        <Link className="btn btn-secondary" to="/">
           Go to Home
-        </Link>
-
-        <Link className="btn btn-secondary" to="/dashboard">
-          Go to Dashboard
         </Link>
       </div>
     </div>

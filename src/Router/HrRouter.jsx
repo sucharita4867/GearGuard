@@ -1,10 +1,10 @@
-import { Navigate } from "react-router";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import useRole from "../Hooks/useRole";
 import Forbidden from "../Components/Forbidden ";
+import { Navigate } from "react-router";
 
-const EmployeeRoute = ({ children }) => {
+const HrRouter = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const [role, roleLoading] = useRole();
 
@@ -17,11 +17,11 @@ const EmployeeRoute = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (role !== "Employee") {
+  if (role !== "Hr") {
     return <Forbidden />;
   }
 
   return children;
 };
 
-export default EmployeeRoute;
+export default HrRouter;

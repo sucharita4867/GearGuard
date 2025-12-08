@@ -6,12 +6,16 @@ import Login from "../pages/Auth/Login";
 import HrRegister from "../pages/Auth/HrRegister";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import EmployeeRegister from "../pages/Auth/EmployeeRegister";
-import AssetList from "../pages/AssetList";
-import AllRequests from "../pages/AllRequests";
-import AllEmployee from "../pages/AllEmployee";
-import AddAsset from "../pages/AddAsset";
+import AssetList from "../pages/HrLinks/AssetList";
+import AllRequests from "../pages/HrLinks/AllRequests";
+import AllEmployee from "../pages/HrLinks/AllEmployee";
+import AddAsset from "../pages/HrLinks/AddAsset";
 import PrivateRoute from "./PrivateRoute";
 import EmployeeRoute from "./EmployeeRoute";
+import MyAssets from "../pages/EmployeeLinks.jsx/MyAssets";
+import MyTeam from "../pages/EmployeeLinks.jsx/MyTeam";
+import RequestAsset from "../pages/EmployeeLinks.jsx/RequestAsset";
+import HrRouter from "./HrRouter";
 
 export const router = createBrowserRouter([
   {
@@ -22,38 +26,76 @@ export const router = createBrowserRouter([
         index: true,
         Component: HomeRoot,
       },
+      // hr route
       {
         path: "/asset-list",
         element: (
-          <PrivateRoute>
-            <AssetList />
-          </PrivateRoute>
+          <HrRouter>
+            <PrivateRoute>
+              <AssetList />
+            </PrivateRoute>
+          </HrRouter>
         ),
       },
       {
         path: "/asset-add",
         element: (
-          <EmployeeRoute>
+          <HrRouter>
             <PrivateRoute>
               <AddAsset />
             </PrivateRoute>
-          </EmployeeRoute>
+          </HrRouter>
         ),
       },
       {
         path: "/all-requests",
         element: (
-          <PrivateRoute>
-            <AllRequests />
-          </PrivateRoute>
+          <HrRouter>
+            <PrivateRoute>
+              <AllRequests />
+            </PrivateRoute>
+          </HrRouter>
         ),
       },
       {
         path: "/all-employee",
         element: (
-          <PrivateRoute>
-            <AllEmployee />
-          </PrivateRoute>
+          <HrRouter>
+            <PrivateRoute>
+              <AllEmployee />
+            </PrivateRoute>
+          </HrRouter>
+        ),
+      },
+      // emplyee route
+      {
+        path: "/my-assets",
+        element: (
+          <EmployeeRoute>
+            <PrivateRoute>
+              <MyAssets />,
+            </PrivateRoute>
+          </EmployeeRoute>
+        ),
+      },
+      {
+        path: "/my-team",
+        element: (
+          <EmployeeRoute>
+            <PrivateRoute>
+              <MyTeam />,
+            </PrivateRoute>
+          </EmployeeRoute>
+        ),
+      },
+      {
+        path: "/request-asset",
+        element: (
+          <EmployeeRoute>
+            <PrivateRoute>
+              <RequestAsset />,
+            </PrivateRoute>
+          </EmployeeRoute>
         ),
       },
     ],
