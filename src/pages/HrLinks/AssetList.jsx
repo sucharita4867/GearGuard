@@ -39,7 +39,7 @@ const AssetList = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosPublic.delete(`/asset/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.deletedCount) {
             refetch();
             Swal.fire({
