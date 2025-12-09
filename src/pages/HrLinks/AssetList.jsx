@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
 import Loading from "../../Components/Loading";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const AssetList = () => {
   const axiosPublic = useAxios();
   const [search, setSearch] = useState("");
+  const { user } = useContext(AuthContext);
 
   // Fetch assets
   const {
@@ -14,9 +16,10 @@ const AssetList = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["assets"],
+    enabled: !!user?.email,
+    queryKey: ["assets", user?.email],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/asset`);
+      const res = await axiosPublic.get(`/asset?hrEmail=${user.email}`);
       return res.data;
     },
   });

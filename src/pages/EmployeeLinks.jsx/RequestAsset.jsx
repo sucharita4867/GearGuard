@@ -7,6 +7,7 @@ import { AuthContext } from "../../Context/AuthProvider";
 
 const RequestAsset = () => {
   const [selectedAsset, setSelectedAsset] = useState(null);
+  const [requestedAssets, setRequestedAssets] = useState([]);
   const axiosPublic = useAxios();
   const { user } = useContext(AuthContext);
   const { data: assets = [] } = useQuery({
@@ -21,11 +22,12 @@ const RequestAsset = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const handleRequest = async (data) => {
-    console.log(data);
+    // console.log(data);
     const requestData = {
       assetId: selectedAsset._id,
       assetName: selectedAsset.productName,
       assetType: selectedAsset.productType,
+      assetImage: selectedAsset.productImage,
       requesterName: user.displayName,
       requesterEmail: user.email,
       hrEmail: selectedAsset.hrEmail,
@@ -38,13 +40,26 @@ const RequestAsset = () => {
     };
 
     // console.log("Request Submitted:", requestData);
+    // console.log("selectedAsset:", selectedAsset);
+
     const res = await axiosPublic.post("/request", requestData);
-    if (res.data.insertedId) {
+    if (res.data.insertedId || res.data.success) {
       Swal.fire({
         icon: "success",
-        title: "Request Submitted",
-        text: "Your request has been sent successfully.",
-        timer: 1500,
+        title: "Request Sent!",
+        text: "Your asset request has been submitted.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+
+      // 👉 Update UI instantly
+      setRequestedAssets((prev) => [...prev, selectedAsset._id]);
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Already Requested!",
+        text: res.data.message,
+        timer: 2000,
         showConfirmButton: false,
       });
     }
@@ -122,15 +137,23 @@ const RequestAsset = () => {
 
               {/* Button */}
               <button
-                disabled={asset.availableQuantity === 0}
+                disabled={
+                  asset.availableQuantity === 0 ||
+                  requestedAssets.includes(asset._id)
+                }
                 onClick={() => openModal(asset)}
                 className={`mt-3 btn btn-sm w-full transition-all ${
-                  asset.availableQuantity > 0
+                  asset.availableQuantity > 0 &&
+                  !requestedAssets.includes(asset._id)
                     ? "btn-secondary"
                     : "btn-disabled bg-gray-300 text-gray-600 border-none"
                 }`}
               >
-                {asset.availableQuantity > 0 ? "Request Asset" : "Out of Stock"}
+                {asset.availableQuantity === 0
+                  ? "Out of Stock"
+                  : requestedAssets.includes(asset._id)
+                  ? "Requested"
+                  : "Request Asset"}
               </button>
             </div>
           </div>
