@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { FaSearch, FaPrint, FaUndo } from "react-icons/fa";
 import useAxios from "../../Hooks/useAxios";
 import Loading from "../../Components/Loading";
 import { useReactToPrint } from "react-to-print";
 import Swal from "sweetalert2";
 import { VscRepoFetch } from "react-icons/vsc";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const MyAssets = () => {
   const [searchText, setSearchText] = useState("");
   const [filter, setFilter] = useState("all");
   const axiosPublic = useAxios();
+  const {user} = useContext(AuthContext)
 
   const printRef = useRef(null);
 
@@ -19,9 +21,10 @@ const MyAssets = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["filteredAssets"],
+    enabled: !!user?.email,
+    queryKey: ["filteredAssets",user?.email],
     queryFn: async () => {
-      const res = await axiosPublic.get("/myAssets");
+      const res = await axiosPublic.get(`/myAssets?email=${user.email}`);
       return res.data;
     },
   });
