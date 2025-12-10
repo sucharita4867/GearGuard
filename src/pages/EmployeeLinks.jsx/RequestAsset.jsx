@@ -173,9 +173,7 @@ const RequestAsset = () => {
                 onSubmit={handleSubmit(handleRequest)}
                 className="space-y-3"
               >
-                <label className="label font-semibold">
-                  Add Note (optional)
-                </label>
+                <label className="label font-semibold">Add Note</label>
                 <textarea
                   {...register("note")}
                   className="textarea textarea-bordered w-full"

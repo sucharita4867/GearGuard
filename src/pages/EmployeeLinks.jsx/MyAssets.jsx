@@ -12,7 +12,7 @@ const MyAssets = () => {
   const [searchText, setSearchText] = useState("");
   const [filter, setFilter] = useState("all");
   const axiosPublic = useAxios();
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   const printRef = useRef(null);
 
@@ -22,7 +22,7 @@ const MyAssets = () => {
     refetch,
   } = useQuery({
     enabled: !!user?.email,
-    queryKey: ["filteredAssets",user?.email],
+    queryKey: ["filteredAssets", user?.email],
     queryFn: async () => {
       const res = await axiosPublic.get(`/myAssets?email=${user.email}`);
       return res.data;

@@ -79,7 +79,7 @@ const AllRequests = () => {
       </h2>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className=" overflow-x-auto rounded-xl shadow-md border border-gray-200">
         <table className="table  border rounded-lg">
           {/* Table Head */}
           <thead className="bg-secondary text-white">
@@ -93,58 +93,66 @@ const AllRequests = () => {
           </thead>
 
           {/* Table Body */}
-          <tbody>
-            {requests?.map((req) => (
-              <tr key={req._id} className="hover">
-                <td>
-                  <div>
-                    <p className="font-semibold">{req.requesterName}</p>
-                    <p className="text-sm text-gray-500">
-                      {req.requesterEmail}
-                    </p>
-                  </div>
-                </td>
+          <tbody className="bg-white">
+            {requests.length > 0 ? (
+              requests?.map((req) => (
+                <tr key={req._id} className="hover">
+                  <td>
+                    <div>
+                      <p className="font-semibold">{req.requesterName}</p>
+                      <p className="text-sm text-gray-500">
+                        {req.requesterEmail}
+                      </p>
+                    </div>
+                  </td>
 
-                <td className="font-medium">{req.assetName}</td>
+                  <td className="font-medium">{req.assetName}</td>
 
-                <td>{req.requestDate}</td>
+                  <td>{req.requestDate}</td>
 
-                {/* requestStatus Badge */}
-                <td>
-                  <span
-                    className={`badge px-4 py-2 ${
-                      req.requestStatus === "pending"
-                        ? "badge-warning"
-                        : req.requestStatus === "approved"
-                        ? "badge-success"
-                        : "bg-red-500"
-                    } text-white`}
-                  >
-                    {req.requestStatus.charAt(0).toUpperCase() +
-                      req.requestStatus.slice(1)}
-                  </span>
-                </td>
+                  {/* requestStatus Badge */}
+                  <td>
+                    <span
+                      className={`badge px-4 py-2 ${
+                        req.requestStatus === "pending"
+                          ? "badge-warning"
+                          : req.requestStatus === "approved"
+                          ? "badge-success"
+                          : "bg-red-500"
+                      } text-white`}
+                    >
+                      {req.requestStatus.charAt(0).toUpperCase() +
+                        req.requestStatus.slice(1)}
+                    </span>
+                  </td>
 
-                {/* Action Buttons */}
-                <td className="flex gap-3 justify-center">
-                  <button
-                    onClick={() => handleApprove(req._id)}
-                    disabled={req.requestStatus !== "pending"}
-                    className="btn bg-secondary btn-sm text-white flex items-center gap-2 disabled:opacity-40"
-                  >
-                    <FaCheck /> Approve
-                  </button>
+                  {/* Action Buttons */}
+                  <td className="flex gap-3 justify-center">
+                    <button
+                      onClick={() => handleApprove(req._id)}
+                      disabled={req.requestStatus !== "pending"}
+                      className="btn bg-secondary btn-sm text-white flex items-center gap-2 disabled:opacity-40"
+                    >
+                      <FaCheck /> Approve
+                    </button>
 
-                  <button
-                    disabled={req.requestStatus !== "pending"}
-                    onClick={() => handleReject(req._id)}
-                    className="btn bg-red-500 btn-sm text-white flex items-center gap-2 disabled:opacity-40"
-                  >
-                    <FaTimes /> Reject
-                  </button>
+                    <button
+                      disabled={req.requestStatus !== "pending"}
+                      onClick={() => handleReject(req._id)}
+                      className="btn bg-red-500 btn-sm text-white flex items-center gap-2 disabled:opacity-40"
+                    >
+                      <FaTimes /> Reject
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7" className="text-center py-6 text-gray-400">
+                  No assets requests found.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

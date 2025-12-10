@@ -73,7 +73,7 @@ const AssetList = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className=" overflow-x-auto rounded-xl shadow-md border border-gray-200">
         <table className="table table-zebra w-full shadow-lg rounded-lg">
           <thead className="bg-secondary text-white text-base">
             <tr>
@@ -87,7 +87,7 @@ const AssetList = () => {
             </tr>
           </thead>
 
-          <tbody>
+          <tbody className="bg-white">
             {filteredAssets.length > 0 ? (
               filteredAssets.map((item, index) => (
                 <tr key={item._id}>
@@ -123,8 +123,8 @@ const AssetList = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="text-center text-gray-600 py-5">
-                  ❌ No assets found
+                <td colSpan="7" className="text-center py-6 text-gray-400">
+                  No assets found.
                 </td>
               </tr>
             )}
