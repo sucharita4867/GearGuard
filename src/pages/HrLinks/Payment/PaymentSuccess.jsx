@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import useAxios from "../../../Hooks/useAxios";
 import Swal from "sweetalert2";
-import Loading from "../../../Components/Loading";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const PaymentSuccess = () => {
   const axiosPublic = useAxios();
@@ -43,9 +43,9 @@ const PaymentSuccess = () => {
     }
 
     verify();
-  }, [navigate, sessionId]);
+  }, [navigate, sessionId, axiosPublic]);
 
-  return <Loading />;
+  return <LoadingSpinner />;
 };
 
 export default PaymentSuccess;

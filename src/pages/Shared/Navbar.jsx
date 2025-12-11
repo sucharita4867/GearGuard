@@ -25,32 +25,89 @@ const Navbar = () => {
   const hrLinks = (
     <>
       <li>
-        <NavLink to="/asset-list">Asset List</NavLink>
+        <NavLink
+          to="/asset-list"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          Asset List
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/asset-add"> Add Asset</NavLink>
+        <NavLink
+          to="/asset-add"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          Add Asset
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/all-requests"> All Requests</NavLink>
+        <NavLink
+          to="/all-requests"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          All Requests
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/all-employee"> My Employee</NavLink>
+        <NavLink
+          to="/all-employee"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          {" "}
+          My Employee
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/package-update"> Package Update</NavLink>
+        <NavLink
+          to="/package-update"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          Package Update
+        </NavLink>
       </li>
     </>
   );
   const employeeLinks = (
     <>
       <li>
-        <NavLink to="/my-assets"> My Assets</NavLink>
+        <NavLink
+          to="/my-assets"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          My Assets
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/my-team"> My Team</NavLink>
+        <NavLink
+          to="/my-team"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          My Team
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/request-asset"> Request Asset</NavLink>
+        <NavLink
+          to="/request-asset"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          Request Asset
+        </NavLink>
       </li>
     </>
   );
@@ -78,7 +135,14 @@ const Navbar = () => {
             </div>
             <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
               <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "text-secondary font-semibold" : "text-white"
+                  }
+                >
+                  Home
+                </NavLink>
               </li>
               {role === "Hr" && hrLinks}
               {role === "Employee" && employeeLinks}
@@ -128,7 +192,9 @@ const Navbar = () => {
             <div className="flex items-center gap-3">
               <div className="avatar">
                 <div className="w-10 rounded-full border border-white">
-                  <img src={user?.photoURL} alt="user" />
+                  <NavLink to="/profile">
+                    <img src={user?.photoURL} alt="user" />
+                  </NavLink>
                 </div>
               </div>
 

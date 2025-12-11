@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { Navigate } from "react-router";
-import Loading from "../Components/Loading";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
   if (loading) {
-    return <Loading />;
+    return <LoadingSpinner />;
   }
 
   if (user && user?.email) {

@@ -4,8 +4,8 @@ import React, { useContext } from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import useAxios from "../../Hooks/useAxios";
 import { AuthContext } from "../../Context/AuthProvider";
-import Loading from "../../Components/Loading";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const AllRequests = () => {
   const { user } = useContext(AuthContext);
@@ -23,7 +23,7 @@ const AllRequests = () => {
       return res.data;
     },
   });
-  if (isLoading) return <Loading />;
+  if (isLoading) return <LoadingSpinner />;
 
   const handleApprove = async (id) => {
     const confirm = await Swal.fire({

@@ -17,8 +17,8 @@ import MyTeam from "../pages/EmployeeLinks.jsx/MyTeam";
 import RequestAsset from "../pages/EmployeeLinks.jsx/RequestAsset";
 import HrRouter from "./HrRouter";
 import PackageUpdate from "../pages/HrLinks/PackageUpdate";
-import Payment from "../pages/HrLinks/Payment/Payment";
 import PaymentSuccess from "../pages/HrLinks/Payment/PaymentSuccess";
+import Profile from "../pages/Home/Profile";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +27,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: HomeRoot,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       // hr route
       {
@@ -79,16 +87,7 @@ export const router = createBrowserRouter([
           </HrRouter>
         ),
       },
-      // {
-      //   path: "/payment",
-      //   element: (
-      //     <HrRouter>
-      //       <PrivateRoute>
-      //         <Payment />
-      //       </PrivateRoute>
-      //     </HrRouter>
-      //   ),
-      // },
+
       {
         path: "/payment/payment-success",
         element: (

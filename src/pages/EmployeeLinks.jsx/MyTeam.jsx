@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
-import Loading from "../../Components/Loading";
 import { FaBirthdayCake } from "react-icons/fa";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const MyTeam = () => {
   const { user } = useContext(AuthContext);
@@ -30,7 +30,7 @@ const MyTeam = () => {
     },
   });
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <LoadingSpinner/>
 
   let visibleEmployees = company
     ? employees.filter((emp) => emp.companyName === company)

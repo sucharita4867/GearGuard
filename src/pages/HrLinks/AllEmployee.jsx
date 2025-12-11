@@ -3,8 +3,8 @@ import { FaUserAlt, FaTrash } from "react-icons/fa";
 import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../Context/AuthProvider";
-import Loading from "../../Components/Loading";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const AllEmployee = () => {
   const axiosPublic = useAxios();
@@ -60,7 +60,7 @@ const AllEmployee = () => {
   };
 
   if (isLoading) {
-    return <Loading />;
+    return <LoadingSpinner />;
   }
   // console.log(employees);
 
@@ -76,8 +76,8 @@ const AllEmployee = () => {
       </div>
 
       {/* Employee Table */}
-      <div className="overflow-x-auto rounded-xl shadow-md border border-gray-200 bg-white">
-        <table className="table table-zebra">
+      <div className=" overflow-x-auto rounded-xl shadow-md border border-gray-200">
+        <table className="table table-zebra border rounded-lg">
           {/* Table Head */}
           <thead className="bg-secondary text-white text-base">
             <tr>
@@ -91,42 +91,50 @@ const AllEmployee = () => {
           </thead>
 
           {/* Table Body */}
-          <tbody>
-            {employees.map((emp) => (
-              <tr key={emp._id} className="hover:bg-gray-100 transition-all">
-                {/* Employee Image + Name */}
-                <td>
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={emp.photo}
-                      alt={emp.name}
-                      className="w-12 h-12 rounded-full object-cover border"
-                    />
-                  </div>
-                </td>
+          <tbody className="bg-white">
+            {employees.length > 0 ? (
+              employees.map((emp) => (
+                <tr key={emp._id} className="hover:bg-gray-100 transition-all">
+                  {/* Employee Image + Name */}
+                  <td>
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={emp.photo}
+                        alt={emp.name}
+                        className="w-12 h-12 rounded-full object-cover border"
+                      />
+                    </div>
+                  </td>
 
-                <td className="font-medium">{emp.name}</td>
-                <td className="text-gray-600">{emp.email}</td>
-                <td>{new Date(emp.joinDate).toLocaleDateString()}</td>
+                  <td className="font-medium">{emp.name}</td>
+                  <td className="text-gray-600">{emp.email}</td>
+                  <td>{new Date(emp.joinDate).toLocaleDateString()}</td>
 
-                {/* Assets Count */}
-                <td>
-                  <span className="badge badge-info text-white px-4 py-2">
-                    {emp.assetsCount} Assets
-                  </span>
-                </td>
+                  {/* Assets Count */}
+                  <td>
+                    <span className="badge badge-info text-white px-4 py-2">
+                      {emp.assetsCount} Assets
+                    </span>
+                  </td>
 
-                {/* Remove Button */}
-                <td className="text-center">
-                  <button
-                    onClick={() => handleReturnBtn(emp._id)}
-                    className="btn btn-sm bg-red-500 text-white flex items-center gap-2 hover:bg-red-600"
-                  >
-                    <FaTrash /> Remove
-                  </button>
+                  {/* Remove Button */}
+                  <td className="text-center">
+                    <button
+                      onClick={() => handleReturnBtn(emp._id)}
+                      className="btn btn-sm bg-red-500 text-white flex items-center gap-2 hover:bg-red-600"
+                    >
+                      <FaTrash /> Remove
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7" className="text-center py-6 text-gray-400">
+                  No employees found.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

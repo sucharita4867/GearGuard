@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext, useRef, useState } from "react";
 import { FaSearch, FaPrint, FaUndo } from "react-icons/fa";
 import useAxios from "../../Hooks/useAxios";
-import Loading from "../../Components/Loading";
 import { useReactToPrint } from "react-to-print";
 import Swal from "sweetalert2";
 import { VscRepoFetch } from "react-icons/vsc";
 import { AuthContext } from "../../Context/AuthProvider";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const MyAssets = () => {
   const [searchText, setSearchText] = useState("");
@@ -24,7 +24,7 @@ const MyAssets = () => {
     enabled: !!user?.email,
     queryKey: ["filteredAssets", user?.email],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/myAssets?email=${user.email}`);
+      const res = await axiosPublic.get(`/my-asset?email=${user.email}`);
       return res.data;
     },
   });
@@ -41,7 +41,8 @@ const MyAssets = () => {
       }),
   });
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <LoadingSpinner />;
+
 
   const filteredAssets = assets.filter((asset) => {
     return (

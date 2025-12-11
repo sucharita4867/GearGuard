@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
-import Loading from "../../Components/Loading";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const AssetList = () => {
   const axiosPublic = useAxios();
@@ -23,12 +23,13 @@ const AssetList = () => {
       return res.data;
     },
   });
+  // console.log(assets);
 
   const filteredAssets = assets.filter((item) =>
     item.productName.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <LoadingSpinner />;
 
   const handleAssetDelete = (id) => {
     Swal.fire({

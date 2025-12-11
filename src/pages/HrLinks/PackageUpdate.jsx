@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import useAxios from "../../Hooks/useAxios";
-import Loading from "../../Components/Loading";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const PackagesUpdate = () => {
   const axiosPublic = useAxios();
@@ -20,11 +20,11 @@ const PackagesUpdate = () => {
   });
 
   if (isLoading) {
-    return <Loading />;
+    return <LoadingSpinner />;
   }
 
   const handleUpgrade = async (pkg) => {
-    if (loading) return; 
+    if (loading) return;
 
     setLoading(true);
 
@@ -44,37 +44,6 @@ const PackagesUpdate = () => {
     }
   };
 
-  //   {
-  //     name: "Basic",
-  //     employeeLimit: 5,
-  //     price: 5,
-  //     features: ["Asset Tracking", "Employee Management", "Basic Support"],
-  //     popular: false,
-  //   },
-  //   {
-  //     name: "Standard",
-  //     employeeLimit: 10,
-  //     price: 12,
-  //     features: [
-  //       "All Basic features",
-  //       "Team Collaboration",
-  //       "Company Branding",
-  //     ],
-  //     popular: true,
-  //   },
-  //   {
-  //     name: "Premium",
-  //     employeeLimit: 20,
-  //     price: 20,
-  //     features: [
-  //       "All Standard features",
-  //       "Advanced Reporting",
-  //       "Priority Support",
-  //     ],
-  //     popular: false,
-  //   },
-  // ];
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white py-16 px-4">
       {/* Header */}
@@ -83,7 +52,7 @@ const PackagesUpdate = () => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl font-bold text-gray-800">
+        <h1 className="text-4xl font-bold text-primary">
           Upgrade Your Package
         </h1>
         <p className="text-gray-600 mt-3">
