@@ -16,7 +16,9 @@ import MyAssets from "../pages/EmployeeLinks.jsx/MyAssets";
 import MyTeam from "../pages/EmployeeLinks.jsx/MyTeam";
 import RequestAsset from "../pages/EmployeeLinks.jsx/RequestAsset";
 import HrRouter from "./HrRouter";
-
+import PackageUpdate from "../pages/HrLinks/PackageUpdate";
+import Payment from "../pages/HrLinks/Payment/Payment";
+import PaymentSuccess from "../pages/HrLinks/Payment/PaymentSuccess";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -67,7 +69,37 @@ export const router = createBrowserRouter([
           </HrRouter>
         ),
       },
-      // emplyee route
+      {
+        path: "/package-update",
+        element: (
+          <HrRouter>
+            <PrivateRoute>
+              <PackageUpdate />
+            </PrivateRoute>
+          </HrRouter>
+        ),
+      },
+      // {
+      //   path: "/payment",
+      //   element: (
+      //     <HrRouter>
+      //       <PrivateRoute>
+      //         <Payment />
+      //       </PrivateRoute>
+      //     </HrRouter>
+      //   ),
+      // },
+      {
+        path: "/payment/payment-success",
+        element: (
+          <HrRouter>
+            <PrivateRoute>
+              <PaymentSuccess />
+            </PrivateRoute>
+          </HrRouter>
+        ),
+      },
+      // employee route
       {
         path: "/my-assets",
         element: (

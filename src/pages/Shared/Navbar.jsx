@@ -36,6 +36,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/all-employee"> My Employee</NavLink>
       </li>
+      <li>
+        <NavLink to="/package-update"> Package Update</NavLink>
+      </li>
     </>
   );
   const employeeLinks = (

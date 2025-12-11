@@ -10,7 +10,6 @@ const MyTeam = () => {
   const axiosPublic = useAxios();
   const [company, setCompany] = useState("");
 
-  // 1️⃣ Fetch all companies the employee is affiliated with
   const { data: companyNames = [] } = useQuery({
     queryKey: ["companies", user.email],
     enabled: !!user?.email,
@@ -33,12 +32,10 @@ const MyTeam = () => {
 
   if (isLoading) return <Loading />;
 
-  // Filter by company
   let visibleEmployees = company
     ? employees.filter((emp) => emp.companyName === company)
     : employees;
 
-  // Remove duplicate employees (unique by email)
   visibleEmployees = [
     ...new Map(visibleEmployees.map((emp) => [emp.email, emp])).values(),
   ];
