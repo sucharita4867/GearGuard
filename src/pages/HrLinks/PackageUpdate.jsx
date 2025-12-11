@@ -76,7 +76,7 @@ const PackagesUpdate = () => {
           >
             {/* Popular Badge */}
             {pkg.popular && (
-              <span className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 text-xs rounded-full shadow">
+              <span className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 text-xs rounded-full shadow">
                 Most Popular
               </span>
             )}
@@ -88,7 +88,7 @@ const PackagesUpdate = () => {
               Employee Limit: {pkg.employeeLimit}
             </p>
 
-            <p className="text-4xl font-bold text-indigo-600 mb-6">
+            <p className="text-4xl font-bold text-[#1da03f] mb-6">
               ${pkg.price}
               <span className="text-lg text-gray-500">/mo</span>
             </p>
@@ -96,7 +96,7 @@ const PackagesUpdate = () => {
             <ul className="space-y-2 mb-6">
               {pkg.features.map((f, i) => (
                 <li key={i} className="flex items-center gap-2 text-gray-700">
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                  <span className="w-2 h-2 bg-secondary rounded-full"></span>
                   {f}
                 </li>
               ))}
@@ -106,8 +106,8 @@ const PackagesUpdate = () => {
               onClick={() => handleUpgrade(pkg)}
               className={`w-full py-3 rounded-xl font-semibold transition-all shadow-lg ${
                 pkg.popular
-                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:scale-[1.03]"
-                  : "bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:scale-[1.02]"
+                  ? "bg-secondary text-white hover:scale-[1.03]"
+                  : "bg-secondary text-white hover:scale-[1.02]"
               }`}
             >
               Upgrade Now
