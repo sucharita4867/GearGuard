@@ -14,7 +14,7 @@ const RequestAsset = () => {
     queryKey: ["assets"],
     queryFn: async () => {
       const res = await axiosPublic.get("/asset");
-      return res.data;
+      return res.data.data;
     },
   });
   // console.log(assets);

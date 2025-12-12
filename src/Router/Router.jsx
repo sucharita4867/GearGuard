@@ -19,6 +19,7 @@ import HrRouter from "./HrRouter";
 import PackageUpdate from "../pages/HrLinks/PackageUpdate";
 import PaymentSuccess from "../pages/HrLinks/Payment/PaymentSuccess";
 import Profile from "../pages/Home/Profile";
+import Recharts from "../pages/Home/Recharts";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/recharts",
+        element: (
+          <PrivateRoute>
+            <Recharts />
           </PrivateRoute>
         ),
       },

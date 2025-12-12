@@ -133,8 +133,8 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
-              <li>
+            <ul className="menu menu-sm dropdown-content  rounded-box z-1 mt-3 w-52 p-2 shadow  text-black">
+              <li className="text-black">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
@@ -190,12 +190,26 @@ const Navbar = () => {
 
           {user && (
             <div className="flex items-center gap-3">
-              <div className="avatar">
-                <div className="w-10 rounded-full border border-white">
-                  <NavLink to="/profile">
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="avatar">
+                  <div className="w-10 rounded-full border border-white cursor-pointer">
                     <img src={user?.photoURL} alt="user" />
-                  </NavLink>
+                  </div>
                 </div>
+
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 text-black"
+                >
+                  <li>
+                    <NavLink to="/profile">Profile</NavLink>
+                  </li>
+
+                  {/* Recharts Dashboard Link */}
+                  <li>
+                    <NavLink to="/recharts">Analytics</NavLink>
+                  </li>
+                </ul>
               </div>
 
               <button

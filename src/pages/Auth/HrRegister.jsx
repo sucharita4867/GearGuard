@@ -22,7 +22,7 @@ const HrRegister = () => {
   } = useForm();
 
   const handleRegister = (data) => {
-    const { email, name, companyName, password, dateOfBirth } = data;
+    const { email, name, companyName, password, dob } = data;
     // console.log(email, name, companyName, photoURl, password, dateOfBirth);
     const profileImg = data.companyLogo[0];
     console.log(profileImg);
@@ -44,9 +44,9 @@ const HrRegister = () => {
             email,
             name,
             companyName,
-           companyLogo : photoURl,
+            companyLogo: photoURl,
             password,
-            dateOfBirth,
+            dob,
           });
 
           const userProfile = {
