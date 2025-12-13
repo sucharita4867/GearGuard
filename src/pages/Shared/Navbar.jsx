@@ -205,10 +205,11 @@ const Navbar = () => {
                     <NavLink to="/profile">Profile</NavLink>
                   </li>
 
-                  {/* Recharts Dashboard Link */}
-                  <li>
-                    <NavLink to="/recharts">Analytics</NavLink>
-                  </li>
+                  {role === "Hr" && (
+                    <li>
+                      <NavLink to="/recharts">Analytics</NavLink>
+                    </li>
+                  )}
                 </ul>
               </div>
 

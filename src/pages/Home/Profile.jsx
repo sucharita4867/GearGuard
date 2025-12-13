@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import useAxios from "../../Hooks/useAxios";
 import { useMutation } from "@tanstack/react-query";
@@ -21,8 +21,15 @@ const Profile = () => {
 
     setSelectedFile(file);
     setPreviewImage(URL.createObjectURL(file));
-    // console.log(setPreviewImage);
   };
+
+  useEffect(() => {
+    return () => {
+      if (previewImage?.startsWith("blob:")) {
+        URL.revokeObjectURL(previewImage);
+      }
+    };
+  }, [previewImage]);
 
   const uploadImageToImgBB = async (file) => {
     const formData = new FormData();
@@ -50,30 +57,40 @@ const Profile = () => {
   });
 
   const handleSave = async () => {
-    let finalImageUrl = user?.photoURL || user?.image;
+    let finalImageUrl = user.role === "Hr" ? user.companyLogo : user.image;
 
     if (selectedFile) {
       finalImageUrl = await uploadImageToImgBB(selectedFile);
     }
 
-    const payload = {
+    let payload = {
       name,
       dob,
-      companyLogo: finalImageUrl,
     };
 
+    if (user.role === "Hr") {
+      payload.companyLogo = finalImageUrl; 
+    } else {
+      payload.image = finalImageUrl;
+    }
+
+    // DB update
     await updateDBUser(payload);
 
+    // Firebase update (optional but recommended)
     await updateUserProfile({
       displayName: name,
       photoURL: finalImageUrl,
     });
 
+    // Local user state update
     setUser({
       ...user,
       name,
       dob,
-      image: finalImageUrl,
+      ...(user.role === "Hr"
+        ? { companyLogo: finalImageUrl }
+        : { image: finalImageUrl }),
       displayName: name,
       photoURL: finalImageUrl,
     });

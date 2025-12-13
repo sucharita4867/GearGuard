@@ -16,11 +16,9 @@ const useAxios = () => {
     const reqInterceptor = axiosInstance.interceptors.request.use((config) => {
       const token = localStorage.getItem("token");
 
-      console.log("🟡 TOKEN FROM LS:", token);
-
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
-        console.log("🟢 AUTH HEADER SET");
+        // console.log("🟢 AUTH HEADER SET");
       }
 
       return config;

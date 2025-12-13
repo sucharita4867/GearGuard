@@ -1,35 +1,30 @@
-import React, { useContext } from "react";
 import { FaUserAlt, FaTrash } from "react-icons/fa";
 import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../Context/AuthProvider";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import userPNG from "../../assets/user.png";
 
 const AllEmployee = () => {
   const axiosPublic = useAxios();
-  const { user } = useContext(AuthContext);
 
   const {
     data: employees = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["employees", user?.email],
-    enabled: !!user?.email,
+    queryKey: ["employees"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/employees?hrEmail=${user.email}`);
+      const res = await axiosPublic.get(`/employees`);
       return res.data;
     },
   });
 
   const { data: status = [] } = useQuery({
-    queryKey: ["employeesStatus", user?.email],
-    enabled: !!user?.email,
+    queryKey: ["employeesStatus"],
     queryFn: async () => {
-      const res = await axiosPublic.get(
-        `/employees/stats?hrEmail=${user.email}`
-      );
+      const res = await axiosPublic.get(`/employees/stats`);
       return res.data;
     },
   });
@@ -99,7 +94,14 @@ const AllEmployee = () => {
                   <td>
                     <div className="flex items-center gap-4">
                       <img
-                        src={emp.photo}
+                        src={
+                          emp.photo && !emp.photo.startsWith("blob:")
+                            ? emp.photo
+                            : userPNG
+                        }
+                        onError={(e) => {
+                          e.currentTarget.src = userPNG;
+                        }}
                         alt={emp.name}
                         className="w-12 h-12 rounded-full object-cover border"
                       />

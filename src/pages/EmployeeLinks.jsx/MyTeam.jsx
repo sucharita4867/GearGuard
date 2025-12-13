@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
 import { FaBirthdayCake } from "react-icons/fa";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import userPNG from "../../assets/user.png";
 
 const MyTeam = () => {
   const { user } = useContext(AuthContext);
@@ -30,7 +31,7 @@ const MyTeam = () => {
     },
   });
 
-  if (isLoading) return <LoadingSpinner/>
+  if (isLoading) return <LoadingSpinner />;
 
   let visibleEmployees = company
     ? employees.filter((emp) => emp.companyName === company)
@@ -45,6 +46,7 @@ const MyTeam = () => {
     if (!emp.dob) return false;
     return new Date(emp.dob).getMonth() === currentMonth;
   });
+  // console.log(visibleEmployees);
 
   return (
     <div className="w-11/12 mx-auto py-10">
@@ -76,24 +78,33 @@ const MyTeam = () => {
           <div
             key={emp._id}
             className="bg-white shadow-md rounded-xl p-5 border
-            hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+  hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
           >
-            <div className="flex flex-col items-center">
-              <img
-                src={emp.photo}
-                alt={emp.name}
-                className="w-20 h-20 rounded-full object-cover border mb-3"
-              />
+            <div className="flex flex-col items-center text-center">
+              {/* Avatar */}
+              <div className="w-24 h-24 rounded-full border-4 border-primary shadow mb-3 overflow-hidden">
+                <img
+                  src={emp.photo || userPNG}
+                  alt={emp.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
+              {/* Name */}
               <h3 className="text-lg font-bold text-gray-800">{emp.name}</h3>
+
+              {/* Email */}
               <p className="text-sm text-gray-500 mb-1">{emp.email}</p>
+
+              {/* Position */}
               <p className="text-sm text-primary font-semibold">
                 {emp.position || "Employee"}
               </p>
-            </div>
 
-            <div className="mt-4 text-center text-gray-500 text-sm">
-              Joined: {new Date(emp.joinDate).toLocaleDateString()}
+              {/* Join Date */}
+              <div className="mt-3 text-gray-500 text-sm">
+                Joined: {new Date(emp.joinDate).toLocaleDateString()}
+              </div>
             </div>
           </div>
         ))}
