@@ -12,15 +12,15 @@ const AssetList = () => {
 
   const { user } = useContext(AuthContext);
 
-  const limit = 5;
+  const limit = 10;
 
-  // 🚀 Fetch assets with pagination
   const { data, isLoading, refetch } = useQuery({
     enabled: !!user?.email,
     queryKey: ["assets", user?.email, page],
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/asset?hrEmail=${user.email}&page=${page}&limit=${limit}`
+        `/asset?page=${page}&limit=${limit}
+`
       );
       return res.data;
     },

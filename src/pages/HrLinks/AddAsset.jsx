@@ -1,13 +1,14 @@
-import axios from "axios";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthProvider";
 import useUserProfile from "../../Hooks/useUserProfile";
 import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 
 const AddAsset = () => {
   const { user } = useContext(AuthContext);
   const { data: userDB } = useUserProfile();
+  const axiosPublic = useAxios();
   // console.log("user in DB", );
   // console.log(user);
   const {
@@ -17,37 +18,33 @@ const AddAsset = () => {
     formState: { errors },
   } = useForm();
 
-  const imgAPI = `https://api.imgbb.com/1/upload?key=${
-    import.meta.env.VITE_IMG_BB_API_KEY
-  }`;
-
+  // const imgAPI = `https://api.imgbb.com/1/upload?key=${
+  //   import.meta.env.VITE_IMG_BB_API_KEY
+  // }`;
+  console.log(user);
   const handleAddAsset = async (data) => {
     const formData = new FormData();
-    formData.append("image", data.productImage[0]);
-    const imgResponse = await axios.post(imgAPI, formData);
 
-    const imageURL = imgResponse.data.data.url;
+    formData.append("image", data.productImage[0]); // 🔥 file
+    formData.append("productName", data.productName);
+    formData.append("productType", data.productType);
+    formData.append("productQuantity", data.productQuantity);
+    formData.append("companyName", userDB.companyName || "Unknown");
 
-    // console.log(data, imageURL);
-
-    const finalAssetData = {
-      productName: data.productName,
-      productType: data.productType,
-      productQuantity: data.productQuantity,
-      productImage: imageURL,
-      hrEmail: user?.email,
-      companyName: userDB.companyName || "Unknown",
-    };
-
-    await axios.post("http://localhost:3000/asset", finalAssetData);
+    await axiosPublic.post("/asset", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log(formData);
 
     Swal.fire({
-      position: "top-end",
       icon: "success",
-      title: "Asset added successfully!",
-      showConfirmButton: false,
+      title: "Asset added successfully",
       timer: 1500,
+      showConfirmButton: false,
     });
+
     reset();
   };
 

@@ -7,15 +7,15 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxios from "../../Hooks/useAxios";
 
 const TopRequestedBarChart = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxios();
 
   const { data: topAssets = [] } = useQuery({
     queryKey: ["topRequested"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/analytics/top-requested");
+      const res = await axiosPublic.get("/analytics/top-requested");
       return res.data;
     },
   });
@@ -26,7 +26,7 @@ const TopRequestedBarChart = () => {
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Bar dataKey="count" radius={[6, 6, 0, 0]} />
+        <Bar dataKey="count" fill="#1a8f40" radius={[6, 6, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

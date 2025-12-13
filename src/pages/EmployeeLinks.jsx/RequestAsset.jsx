@@ -11,12 +11,12 @@ const RequestAsset = () => {
   const axiosPublic = useAxios();
   const { user } = useContext(AuthContext);
   const { data: assets = [] } = useQuery({
-    queryKey: ["assets"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/asset");
-      return res.data.data;
-    },
-  });
+  queryKey: ["employee-assets"],
+  queryFn: async () => {
+    const res = await axiosPublic.get("/assets/employee");
+    return res.data;
+  },
+});
   // console.log(assets);
 
   const { register, handleSubmit, reset } = useForm();
@@ -129,6 +129,11 @@ const RequestAsset = () => {
                 </span>
               </div>
 
+              {/* company */}
+              <div className="flex items-center justify-between text-xs text-gray-500">
+                <span>Company name</span>
+                <span>{asset.companyName}</span>
+              </div>
               {/* Date */}
               <div className="flex items-center justify-between text-xs text-gray-500">
                 <span>Added</span>

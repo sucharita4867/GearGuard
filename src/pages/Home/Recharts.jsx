@@ -11,9 +11,7 @@ const Recharts = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Pie */}
         <div className="bg-white p-5 rounded-xl shadow">
-          <h3 className="text-xl font-semibold mb-4">
-            Asset Type Distribution
-          </h3>
+          <h3 className="text-xl font-semibold mb-4">Asset Type Page</h3>
           <AssetTypePieChart />
         </div>
 

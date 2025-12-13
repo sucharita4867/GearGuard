@@ -1,16 +1,16 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxios from "../../Hooks/useAxios";
 
-const COLORS = ["#4f46e5", "#22c55e"];
+const COLORS = ["#0d343a", "#1a8f40"];
 
 const AssetTypePieChart = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxios();
 
   const { data: assetTypes = [] } = useQuery({
     queryKey: ["assetTypes"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/analytics/asset-types");
+      const res = await axiosPublic.get("/analytics/asset-types");
       return res.data;
     },
   });

@@ -9,12 +9,10 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider";
 import axios from "axios";
 import { saveOrUpdateUser } from "../../utils";
-// import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const HrRegister = () => {
   const { registerUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
-  // const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,

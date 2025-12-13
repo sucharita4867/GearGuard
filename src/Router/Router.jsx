@@ -40,9 +40,11 @@ export const router = createBrowserRouter([
       {
         path: "/recharts",
         element: (
-          <PrivateRoute>
-            <Recharts />
-          </PrivateRoute>
+          <HrRouter>
+            <PrivateRoute>
+              <Recharts />
+            </PrivateRoute>
+          </HrRouter>
         ),
       },
       // hr route
