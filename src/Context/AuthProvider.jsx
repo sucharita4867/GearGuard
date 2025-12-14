@@ -18,7 +18,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // console.log(user);
+
   // Google Login
   const googleLogin = () => {
     setLoading(true);
@@ -46,39 +46,56 @@ const AuthProvider = ({ children }) => {
     setLoading(false);
   };
 
-  // update user profile
+  // Update profile
   const updateUserProfile = (profile) => {
     return updateProfile(auth.currentUser, profile);
   };
 
-  // Track logged-in user globally
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      // console.log("Current User:", currentUser);
-      setUser(currentUser);
-
-      if (currentUser) {
-        try {
-          const loggedUser = { email: currentUser.email };
-
-          const res = await fetch("http://localhost:3000/getToken", {
+      try {
+        if (currentUser) {
+          await fetch(`${import.meta.env.VITE_API_URL}/users`, {
             method: "POST",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify(loggedUser),
+            body: JSON.stringify({
+              email: currentUser.email,
+              name: currentUser.displayName,
+              image: currentUser.photoURL,
+              role: "Employee", 
+            }),
           });
 
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/getToken`, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ email: currentUser.email }),
+          });
+
+          if (!res.ok) {
+            throw new Error("Token fetch failed");
+          }
+
           const data = await res.json();
-          // console.log("after getting token", data.token);
 
-          localStorage.setItem("token", data.token);
-        } catch (err) {
-          console.error("Token error", err);
+          if (data?.token) {
+            localStorage.setItem("token", data.token);
+            setUser(currentUser);
+          } else {
+            throw new Error("No token received");
+          }
+        } else {
+          localStorage.removeItem("token");
+          setUser(null);
         }
-      } else {
+      } catch (error) {
+        console.error("Auth error:", error);
         localStorage.removeItem("token");
+        await signOut(auth);
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -92,7 +109,6 @@ const AuthProvider = ({ children }) => {
     signIn,
     registerUser,
     logOut,
-    setUser,
     updateUserProfile,
   };
 

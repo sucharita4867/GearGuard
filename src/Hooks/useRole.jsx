@@ -5,13 +5,13 @@ import useAxios from "./useAxios";
 
 const useRole = () => {
   const { user } = useContext(AuthContext);
-  const axiosSecure = useAxios();
+  const axiosPublic = useAxios();
 
   const { data: role, isLoading } = useQuery({
     queryKey: ["role", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/role/${user.email}`);
+      const res = await axiosPublic.get(`/users/role/${user.email}`);
       return res.data.role;
     },
   });

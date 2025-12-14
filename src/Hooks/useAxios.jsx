@@ -4,7 +4,7 @@ import { AuthContext } from "../Context/AuthProvider";
 import { useNavigate } from "react-router";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://gear-guard-server.vercel.app",
 });
 
 const useAxios = () => {
@@ -12,13 +12,11 @@ const useAxios = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Request interceptor (JWT)
     const reqInterceptor = axiosInstance.interceptors.request.use((config) => {
       const token = localStorage.getItem("token");
 
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
-        // console.log("🟢 AUTH HEADER SET");
       }
 
       return config;

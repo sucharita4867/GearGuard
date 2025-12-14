@@ -18,6 +18,7 @@ const PackagesUpdate = () => {
       return res.data;
     },
   });
+  console.log(packagesData);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -33,7 +34,7 @@ const PackagesUpdate = () => {
         price: pkg.price,
         packageName: pkg.name,
         employeeLimit: pkg.employeeLimit,
-        email: user.email,
+        email: user?.email,
       });
 
       window.location.href = res.data.url;
