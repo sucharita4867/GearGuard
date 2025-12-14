@@ -4,22 +4,25 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
 import { AuthContext } from "../../Context/AuthProvider";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const RequestAsset = () => {
   const [selectedAsset, setSelectedAsset] = useState(null);
   const [requestedAssets, setRequestedAssets] = useState([]);
+  const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxios();
   const { user } = useContext(AuthContext);
-  const { data: assets = [] } = useQuery({
-  queryKey: ["employee-assets"],
-  queryFn: async () => {
-    const res = await axiosPublic.get("/assets/employee");
-    return res.data;
-  },
-});
+  const { data: assets = [], isLoading } = useQuery({
+    queryKey: ["employee-assets"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/assets/employee");
+      return res.data;
+    },
+  });
   // console.log(assets);
-
-  const { register, handleSubmit, reset } = useForm();
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   const handleRequest = async (data) => {
     // console.log(data);
@@ -52,7 +55,6 @@ const RequestAsset = () => {
         showConfirmButton: false,
       });
 
-      // 👉 Update UI instantly
       setRequestedAssets((prev) => [...prev, selectedAsset._id]);
     } else {
       Swal.fire({

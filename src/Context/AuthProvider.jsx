@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
               email: currentUser.email,
               name: currentUser.displayName,
               image: currentUser.photoURL,
-              role: "Employee", 
+              role: "Employee",
             }),
           });
 
@@ -103,6 +103,7 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     user,
+    setUser,
     loading,
     setLoading,
     googleLogin,

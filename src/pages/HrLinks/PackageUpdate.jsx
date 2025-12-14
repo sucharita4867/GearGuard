@@ -18,7 +18,7 @@ const PackagesUpdate = () => {
       return res.data;
     },
   });
-  console.log(packagesData);
+  // console.log(packagesData);
 
   if (isLoading) {
     return <LoadingSpinner />;

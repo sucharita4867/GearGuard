@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthProvider";
 import useUserProfile from "../../Hooks/useUserProfile";
@@ -6,7 +5,6 @@ import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
 
 const AddAsset = () => {
-  const { user } = useContext(AuthContext);
   const { data: userDB } = useUserProfile();
   const axiosPublic = useAxios();
   // console.log("user in DB", );
@@ -21,11 +19,11 @@ const AddAsset = () => {
   // const imgAPI = `https://api.imgbb.com/1/upload?key=${
   //   import.meta.env.VITE_IMG_BB_API_KEY
   // }`;
-  console.log(user);
+  // console.log(user);
   const handleAddAsset = async (data) => {
     const formData = new FormData();
 
-    formData.append("image", data.productImage[0]); // 🔥 file
+    formData.append("image", data.productImage[0]);
     formData.append("productName", data.productName);
     formData.append("productType", data.productType);
     formData.append("productQuantity", data.productQuantity);
