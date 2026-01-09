@@ -69,7 +69,7 @@ const Profile = () => {
     };
 
     if (user.role === "Hr") {
-      payload.companyLogo = finalImageUrl; 
+      payload.companyLogo = finalImageUrl;
     } else {
       payload.image = finalImageUrl;
     }
@@ -162,10 +162,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <button
-          onClick={handleSave}
-          className="btn btn-secondary w-full mt-6 text-white"
-        >
+        <button onClick={handleSave} className="btnPrimary w-full mt-6 ">
           Save Changes
         </button>
       </div>

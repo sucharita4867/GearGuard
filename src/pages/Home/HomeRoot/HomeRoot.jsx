@@ -11,17 +11,14 @@ import PackagesUpdate from "../../HrLinks/PackageUpdate";
 
 const HomeRoot = () => {
   return (
-    <div>
+    <div className="bg-[#E3FFCC] roboto">
       <Banner />
-      <About />
+      {/* <About /> */}
       <PackagesUpdate />
-      {/* <Packages /> */}
-      <div className="w-full bg-[#E3FFCC] ">
-        <Features />
-      </div>
+      <Features />
       <Testimonials />
       <ExtraSection />
-      <FAQ />
+      {/* <FAQ /> */}
       <FinalCTA />
     </div>
   );

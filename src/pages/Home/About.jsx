@@ -10,7 +10,7 @@ import {
 
 const About = () => {
   return (
-    <section className="w-11/12 mx-auto py-20 grid md:grid-cols-2 gap-10 items-center">
+    <section className="w-11/12 mx-auto py-10 grid md:grid-cols-2 gap-10 items-center">
       {/* Image */}
       <motion.div
         initial={{ opacity: 0, x: -60 }}

@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext)
+  const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -107,9 +107,7 @@ const Login = () => {
                 </Link>
               </div>
 
-              <button className="btn p-6 hover:bg-[#1da040d6] bg-secondary text-white w-full mt-1">
-                Login
-              </button>
+              <button className=" btnPrimary w-full mt-1">Login</button>
             </fieldset>
 
             <p className="text-start text-sm mt-2">

@@ -26,9 +26,7 @@ const ErrorPage = () => {
         </p>
 
         <Link to="/" className="mt-5">
-          <button className="btn bg-secondary hover:bg-[#1da040d6] text-white px-6">
-            Return Home
-          </button>
+          <button className="btnPrimary px-6">Return Home</button>
         </Link>
       </div>
     </div>

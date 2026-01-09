@@ -169,9 +169,7 @@ const EmployeeRegister = () => {
                 )}
               </div>
 
-              <button className="btn p-6 hover:bg-[#1da040d6] bg-secondary text-white w-full mt-1">
-                Register
-              </button>
+              <button className="btnPrimary w-full mt-1">Register</button>
             </fieldset>
 
             <p className="text-start text-sm ">

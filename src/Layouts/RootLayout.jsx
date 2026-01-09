@@ -6,9 +6,9 @@ import Navbar from "../pages/Shared/Navbar";
 const RootLayout = () => {
   return (
     <div className="bg-[#eaeced] roboto">
-      <div className="">
+      <div className="bg-[#eaeced]">
         <Navbar />
-        <div className=" ">
+        <div className="mt-16 ">
           <Outlet />
         </div>
         <Footer />

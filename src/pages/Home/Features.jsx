@@ -28,8 +28,8 @@ const Features = () => {
   ];
 
   return (
-    <section className=" py-10 ">
-      <div className="w-11/12 rounded-2xl mx-auto text-center">
+    <section className=" py-10 border border-black ">
+      <div className="w-11/12 rounded-xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ const Features = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-gray-600 mt-2 mb-12"
+          className="text-gray-600 mt-2 mb-6"
         >
           Everything you need to manage company assets efficiently.
         </motion.p>

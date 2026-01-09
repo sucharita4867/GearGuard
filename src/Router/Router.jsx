@@ -20,6 +20,9 @@ import PackageUpdate from "../pages/HrLinks/PackageUpdate";
 import PaymentSuccess from "../pages/HrLinks/Payment/PaymentSuccess";
 import Profile from "../pages/Home/Profile";
 import Recharts from "../pages/Home/Recharts";
+import About from "../pages/Home/About";
+import FAQ from "../pages/Home/FAQ";
+import DashboardLayout from "../Layouts/DashboardLayout";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +31,15 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: HomeRoot,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+
+      {
+        path: "/faq",
+        element: <FAQ />,
       },
       {
         path: "/profile",
@@ -48,16 +60,7 @@ export const router = createBrowserRouter([
         ),
       },
       // hr route
-      {
-        path: "/asset-list",
-        element: (
-          <HrRouter>
-            <PrivateRoute>
-              <AssetList />
-            </PrivateRoute>
-          </HrRouter>
-        ),
-      },
+
       {
         path: "/asset-add",
         element: (
@@ -98,7 +101,6 @@ export const router = createBrowserRouter([
           </HrRouter>
         ),
       },
-
       {
         path: "/payment/payment-success",
         element: (
@@ -138,6 +140,25 @@ export const router = createBrowserRouter([
               <RequestAsset />
             </PrivateRoute>
           </EmployeeRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    children: [
+      {
+        index: true,
+        Component: DashboardLayout,
+      },
+      {
+        path: "/dashboard/asset-list",
+        element: (
+          // <HrRouter>
+          <PrivateRoute>
+            <AssetList />
+          </PrivateRoute>
+          // </HrRouter>
         ),
       },
     ],

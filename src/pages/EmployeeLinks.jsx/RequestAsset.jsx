@@ -152,7 +152,7 @@ const RequestAsset = () => {
                 className={`mt-3 btn btn-sm w-full transition-all ${
                   asset.availableQuantity > 0 &&
                   !requestedAssets.includes(asset._id)
-                    ? "btn-secondary"
+                    ? "btnPrimary"
                     : "btn-disabled bg-gray-300 text-gray-600 border-none"
                 }`}
               >

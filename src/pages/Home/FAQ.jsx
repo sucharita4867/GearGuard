@@ -27,12 +27,12 @@ const FAQ = () => {
   const toggle = (i) => setOpen(open === i ? null : i);
 
   return (
-    <section className="w-11/12 mx-auto py-20">
+    <section className="w-11/12 mx-auto py-10">
       <motion.h2
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl text-center font-bold text-primary mb-10"
+        className="text-3xl md:text-4xl text-center font-bold text-primary mb-8"
       >
         Frequently Asked Questions
       </motion.h2>

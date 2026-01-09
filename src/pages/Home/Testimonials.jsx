@@ -19,14 +19,14 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="w-full bg-gradient-to-b from-white to-[#f0faff] mt-20 py-10">
+    <section className="w-full py-10 border border-black">
       <div className="w-11/12 mx-auto text-center">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-primary  "
+          className="text-3xl md:text-4xl font-bold text-primary  roboto"
         >
           Trusted by Growing Companies
         </motion.h2>
@@ -35,7 +35,7 @@ const Testimonials = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
-          className="text-gray-600 mt-2 mb-14"
+          className="text-gray-600 mt-2 mb-6"
         >
           See what other businesses think about GearGuard.
         </motion.p>

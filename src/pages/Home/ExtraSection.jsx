@@ -22,7 +22,7 @@ const ExtraSection = () => {
   ];
 
   return (
-    <section className="w-full pb-10 mt-20">
+    <section className="w-full py-10">
       <div className="w-11/12 mx-auto text-center">
         {/* Section Heading */}
         <motion.h2
@@ -38,7 +38,7 @@ const ExtraSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-gray-600 mt-2 mb-14"
+          className="text-gray-600 mt-2 mb-8"
         >
           A simple and efficient process to manage company assets.
         </motion.p>

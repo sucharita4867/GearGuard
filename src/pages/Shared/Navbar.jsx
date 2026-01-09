@@ -25,14 +25,7 @@ const Navbar = () => {
   const hrLinks = (
     <>
       <li>
-        <NavLink
-          to="/asset-list"
-          className={({ isActive }) =>
-            isActive ? "text-secondary font-semibold" : "text-white"
-          }
-        >
-          Asset List
-        </NavLink>
+        
       </li>
       <li>
         <NavLink
@@ -113,7 +106,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="w-full bg-primary">
+    <div className="fixed top-0 left-0 w-full h-16 z-50 bg-primary ">
       <div className="navbar text-white shadow-sm w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -144,6 +137,36 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </li>
+              <li className="text-black">
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive ? "text-secondary font-semibold" : "text-white"
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
+              <li className="text-black">
+                <NavLink
+                  to="/faq"
+                  className={({ isActive }) =>
+                    isActive ? "text-secondary font-semibold" : "text-white"
+                  }
+                >
+                  FAQ
+                </NavLink>
+              </li>
+              <li className="text-black">
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive ? "text-secondary font-semibold" : "text-white"
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </li>
               {role === "Hr" && hrLinks}
               {role === "Employee" && employeeLinks}
             </ul>
@@ -158,6 +181,15 @@ const Navbar = () => {
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
+            <li>
+              <NavLink to="about">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="faq">FAQ</NavLink>
+            </li>
+            <li>
+              <NavLink to="dashboard">Dashboard</NavLink>
+            </li>
             {role === "Hr" && hrLinks}
             {role === "Employee" && employeeLinks}
           </ul>
@@ -165,11 +197,9 @@ const Navbar = () => {
 
         <div className="navbar-end gap-3">
           {!user && (
-            <>
+            <div className="flex items-center gap-2">
               <div className="dropdown dropdown-hover">
-                <label className="btn btn-outline text-white border-white hover:bg-white hover:text-black">
-                  Register
-                </label>
+                <label className="btnOutline">Register</label>
                 <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-black">
                   <li>
                     <NavLink to="/register-hr">Register as HR</NavLink>
@@ -182,10 +212,10 @@ const Navbar = () => {
                 </ul>
               </div>
 
-              <NavLink to="/login" className="btn btn-secondary text-white">
+              <NavLink to="/login" className="btnPrimary text-white">
                 Login
               </NavLink>
-            </>
+            </div>
           )}
 
           {user && (
@@ -213,7 +243,7 @@ const Navbar = () => {
                 </ul>
               </div>
 
-              <button onClick={handleLogOut} className="allBtn btn">
+              <button onClick={handleLogOut} className="btnPrimary">
                 Logout
               </button>
             </div>

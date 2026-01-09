@@ -111,9 +111,7 @@ const AddAsset = () => {
           )}
         </div>
 
-        <button className="btn bg-secondary hover:bg-[#22b658] text-white w-full mt-3">
-          Add Asset
-        </button>
+        <button className="btnPrimary w-full mt-3">Add Asset</button>
       </form>
     </div>
   );

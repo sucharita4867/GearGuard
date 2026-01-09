@@ -47,7 +47,7 @@ const PackagesUpdate = () => {
 
   return (
     <div className=" bg-gradient-to-b  from-indigo-50 to-white">
-      <div className="w-11/12 mx-auto py-10">
+      <div className="w-11/12 mx-auto pt-10 pb-2">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -108,8 +108,8 @@ const PackagesUpdate = () => {
                 onClick={() => handleUpgrade(pkg)}
                 className={`w-full py-3 rounded-xl font-semibold transition-all shadow-lg ${
                   pkg.popular
-                    ? "bg-secondary text-white hover:scale-[1.03]"
-                    : "bg-secondary text-white hover:scale-[1.02]"
+                    ? "btnPrimary hover:scale-[1.03]"
+                    : "btnPrimary hover:scale-[1.02]"
                 }`}
               >
                 Upgrade Now
