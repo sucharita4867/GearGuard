@@ -20,3 +20,17 @@ body {
       --color-primary: #0d363c;
       --color-secondary: #1da03f;
 }
+
+.roboto {
+      font-family: "Roboto", sans-serif;
+}
+
+
+
+.btnPrimary {
+      @apply px-6 py-2 text-center rounded-full text-base font-semibold bg-[#1da03f] text-white border border-[#1da03f] hover:bg-[#EAECED] hover:text-[#1da03f] transition duration-300;
+}
+
+.btnOutline {
+      @apply px-6 py-2 text-center rounded-full text-base font-semibold bg-transparent text-[#1da03f] border border-[#1da03f] hover:bg-[#1da03f] hover:text-white transition duration-300;
+}

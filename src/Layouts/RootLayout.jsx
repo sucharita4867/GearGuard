@@ -5,7 +5,7 @@ import Navbar from "../pages/Shared/Navbar";
 
 const RootLayout = () => {
   return (
-    <div className="bg-[#eaeced]">
+    <div className="bg-[#eaeced] roboto">
       <div className="">
         <Navbar />
         <div className=" ">

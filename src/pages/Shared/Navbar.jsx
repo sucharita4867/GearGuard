@@ -213,10 +213,7 @@ const Navbar = () => {
                 </ul>
               </div>
 
-              <button
-                onClick={handleLogOut}
-                className="btn btn-secondary text-white hover:bg-[#1da040d6]"
-              >
+              <button onClick={handleLogOut} className="allBtn btn">
                 Logout
               </button>
             </div>

@@ -30,18 +30,15 @@ const Banner = () => {
           all in one professional dashboard.
         </p>
 
-        <div className="flex flex-wrap gap-4 mt-4">
+        <div className="flex flex-wrap items-center gap-4 mt-4">
           {/* Login Button */}
-          <NavLink to="/login" className="btn btn-secondary text-white">
+          <NavLink to="/login" className="btnPrimary">
             Login
           </NavLink>
 
           {/* Register Dropdown */}
           <div className="dropdown dropdown-hover">
-            <label
-              tabIndex={0}
-              className="btn btn-outline text-white border-white hover:bg-white hover:text-black"
-            >
+            <label tabIndex={0} className="btnOutline">
               Register
             </label>
             <ul
