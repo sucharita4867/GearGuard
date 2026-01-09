@@ -23,6 +23,7 @@ import Recharts from "../pages/Home/Recharts";
 import About from "../pages/Home/About";
 import FAQ from "../pages/Home/FAQ";
 import DashboardLayout from "../Layouts/DashboardLayout";
+import DashboardHome from "../Components/DashboardHome";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -146,20 +147,19 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
-        Component: DashboardLayout,
+        element: <DashboardHome />,
       },
       {
-        path: "/dashboard/asset-list",
-        element: (
-          // <HrRouter>
-          <PrivateRoute>
-            <AssetList />
-          </PrivateRoute>
-          // </HrRouter>
-        ),
+        path: "asset-list",
+        element: <AssetList />,
       },
     ],
   },

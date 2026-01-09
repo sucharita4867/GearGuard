@@ -34,14 +34,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
         {/* MENU (scrollable only this part) */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
-          <NavLink
-            to="/dashboard/asset-list"
-            className={({ isActive }) =>
-              isActive ? "text-secondary font-semibold" : "text-white"
-            }
-          >
-            Asset List
-          </NavLink>
+          <NavLink to="/dashboard/asset-list">Asset List</NavLink>
 
           <NavLink
             to="/"
