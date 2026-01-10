@@ -63,46 +63,6 @@ export const router = createBrowserRouter([
       // hr route
 
       {
-        path: "/asset-add",
-        element: (
-          <HrRouter>
-            <PrivateRoute>
-              <AddAsset />
-            </PrivateRoute>
-          </HrRouter>
-        ),
-      },
-      {
-        path: "/all-requests",
-        element: (
-          <HrRouter>
-            <PrivateRoute>
-              <AllRequests />
-            </PrivateRoute>
-          </HrRouter>
-        ),
-      },
-      {
-        path: "/all-employee",
-        element: (
-          <HrRouter>
-            <PrivateRoute>
-              <AllEmployee />
-            </PrivateRoute>
-          </HrRouter>
-        ),
-      },
-      {
-        path: "/package-update",
-        element: (
-          <HrRouter>
-            <PrivateRoute>
-              <PackageUpdate />
-            </PrivateRoute>
-          </HrRouter>
-        ),
-      },
-      {
         path: "/payment/payment-success",
         element: (
           <HrRouter>
@@ -160,6 +120,22 @@ export const router = createBrowserRouter([
       {
         path: "asset-list",
         element: <AssetList />,
+      },
+      {
+        path: "asset-add",
+        element: <AddAsset />,
+      },
+      {
+        path: "all-requests",
+        element: <AllRequests />,
+      },
+      {
+        path: "all-employee",
+        element: <AllEmployee />,
+      },
+      {
+        path: "package-update",
+        element: <PackageUpdate />,
       },
     ],
   },

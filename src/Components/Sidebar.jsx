@@ -34,54 +34,59 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
         {/* MENU (scrollable only this part) */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
-          <NavLink to="/dashboard/asset-list">Asset List</NavLink>
-
           <NavLink
-            to="/"
-            onClick={() => setIsOpen(false)}
             className={({ isActive }) =>
               `block px-4 py-2 rounded-lg ${
-                isActive ? "bg-[#F8B864] text-black" : "hover:bg-zinc-800"
+                isActive ? "bg-secondary text-black" : "hover:bg-zinc-800"
               }`
             }
+            to="/dashboard/asset-list"
           >
-            Home
+            Asset List
           </NavLink>
-
           <NavLink
-            to="/dashboard/addIssue"
+            to="asset-add"
             onClick={() => setIsOpen(false)}
             className={({ isActive }) =>
               `block px-4 py-2 rounded-lg ${
-                isActive ? "bg-[#F8B864] text-black" : "hover:bg-zinc-800"
+                isActive ? "bg-secondary text-black" : "hover:bg-zinc-800"
               }`
             }
           >
-            Add Issue
+            AddAsset
           </NavLink>
-
           <NavLink
-            to="/dashboard/myIssue"
+            to="all-requests"
             onClick={() => setIsOpen(false)}
             className={({ isActive }) =>
               `block px-4 py-2 rounded-lg ${
-                isActive ? "bg-[#F8B864] text-black" : "hover:bg-zinc-800"
+                isActive ? "bg-secondary text-black" : "hover:bg-zinc-800"
               }`
             }
           >
-            My Issues
+            AllRequests
           </NavLink>
-
           <NavLink
-            to="/dashboard/myContribution"
+            to="all-employee"
             onClick={() => setIsOpen(false)}
             className={({ isActive }) =>
               `block px-4 py-2 rounded-lg ${
-                isActive ? "bg-[#F8B864] text-black" : "hover:bg-zinc-800"
+                isActive ? "bg-secondary text-black" : "hover:bg-zinc-800"
               }`
             }
           >
-            My Contribution
+            my Employee
+          </NavLink>
+          <NavLink
+            to="package-update"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `block px-4 py-2 rounded-lg ${
+                isActive ? "bg-secondary text-black" : "hover:bg-zinc-800"
+              }`
+            }
+          >
+            Update Package
           </NavLink>
         </nav>
 

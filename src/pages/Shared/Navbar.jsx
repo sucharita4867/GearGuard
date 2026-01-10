@@ -22,54 +22,7 @@ const Navbar = () => {
       })
       .catch((err) => console.log(err));
   };
-  const hrLinks = (
-    <>
-      <li>
-        
-      </li>
-      <li>
-        <NavLink
-          to="/asset-add"
-          className={({ isActive }) =>
-            isActive ? "text-secondary font-semibold" : "text-white"
-          }
-        >
-          Add Asset
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/all-requests"
-          className={({ isActive }) =>
-            isActive ? "text-secondary font-semibold" : "text-white"
-          }
-        >
-          All Requests
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/all-employee"
-          className={({ isActive }) =>
-            isActive ? "text-secondary font-semibold" : "text-white"
-          }
-        >
-          {" "}
-          My Employee
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/package-update"
-          className={({ isActive }) =>
-            isActive ? "text-secondary font-semibold" : "text-white"
-          }
-        >
-          Package Update
-        </NavLink>
-      </li>
-    </>
-  );
+
   const employeeLinks = (
     <>
       <li>
@@ -167,7 +120,7 @@ const Navbar = () => {
                   Dashboard
                 </NavLink>
               </li>
-              {role === "Hr" && hrLinks}
+              {/* {role === "Hr" && hrLinks} */}
               {role === "Employee" && employeeLinks}
             </ul>
           </div>
@@ -190,7 +143,7 @@ const Navbar = () => {
             <li>
               <NavLink to="dashboard">Dashboard</NavLink>
             </li>
-            {role === "Hr" && hrLinks}
+            {/* {role === "Hr" && hrLinks} */}
             {role === "Employee" && employeeLinks}
           </ul>
         </div>

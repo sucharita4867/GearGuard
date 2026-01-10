@@ -59,7 +59,7 @@ const AssetList = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto py-10">
+    <div className="w-full py-10">
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-semibold text-primary">Asset List</h2>
 
