@@ -112,6 +112,10 @@ const Navbar = () => {
                 <NavLink to="/about">About</NavLink>
               </li>
               <li>
+                <NavLink to="/contact">Contact</NavLink>
+              </li>
+
+              <li>
                 <NavLink to="/faq">FAQ</NavLink>
               </li>
 
@@ -146,6 +150,16 @@ const Navbar = () => {
                 }
               >
                 About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? "text-secondary font-semibold" : "text-white"
+                }
+              >
+                Contact
               </NavLink>
             </li>
 
