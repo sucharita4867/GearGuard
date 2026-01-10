@@ -23,11 +23,36 @@ const Navbar = () => {
       .catch((err) => console.log(err));
   };
 
+  const hrLinks = (
+    <>
+      <li>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          Dashboard
+        </NavLink>
+      </li>
+    </>
+  );
+
   const employeeLinks = (
     <>
       <li>
         <NavLink
-          to="/my-assets"
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive ? "text-secondary font-semibold" : "text-white"
+          }
+        >
+          Dashboard
+        </NavLink>
+      </li>
+      {/* <li>
+        <NavLink
+          to="/dashboard/my-assets"
           className={({ isActive }) =>
             isActive ? "text-secondary font-semibold" : "text-white"
           }
@@ -37,7 +62,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/my-team"
+          to="/dashboard/my-team"
           className={({ isActive }) =>
             isActive ? "text-secondary font-semibold" : "text-white"
           }
@@ -47,14 +72,14 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/request-asset"
+          to="/dashboard/request-asset"
           className={({ isActive }) =>
             isActive ? "text-secondary font-semibold" : "text-white"
           }
         >
           Request Asset
         </NavLink>
-      </li>
+      </li> */}
     </>
   );
 
@@ -79,49 +104,19 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <ul className="menu menu-sm dropdown-content  rounded-box z-1 mt-3 w-52 p-2 shadow  text-black">
-              <li className="text-black">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "text-secondary font-semibold" : "text-white"
-                  }
-                >
-                  Home
-                </NavLink>
+            <ul className="menu menu-sm dropdown-content rounded-box mt-3 w-52 p-2 shadow text-black">
+              <li>
+                <NavLink to="/">Home</NavLink>
               </li>
-              <li className="">
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    isActive ? "text-secondary font-semibold" : "text-white"
-                  }
-                >
-                  About
-                </NavLink>
+              <li>
+                <NavLink to="/about">About</NavLink>
               </li>
-              <li className="text-black">
-                <NavLink
-                  to="/faq"
-                  className={({ isActive }) =>
-                    isActive ? "text-secondary font-semibold" : "text-white"
-                  }
-                >
-                  FAQ
-                </NavLink>
+              <li>
+                <NavLink to="/faq">FAQ</NavLink>
               </li>
-              <li className="text-black">
-                <NavLink
-                  to="/dashboard"
-                  className={({ isActive }) =>
-                    isActive ? "text-secondary font-semibold" : "text-white"
-                  }
-                >
-                  Dashboard
-                </NavLink>
-              </li>
-              {/* {role === "Hr" && hrLinks} */}
-              {role === "Employee" && employeeLinks}
+
+              {user && role === "Hr" && hrLinks}
+              {user && role === "Employee" && employeeLinks}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost text-xl">
@@ -131,20 +126,43 @@ const Navbar = () => {
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
+            {/* Public links */}
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-secondary font-semibold" : "text-white"
+                }
+              >
+                Home
+              </NavLink>
             </li>
+
             <li>
-              <NavLink to="/about">About</NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "text-secondary font-semibold" : "text-white"
+                }
+              >
+                About
+              </NavLink>
             </li>
+
             <li>
-              <NavLink to="/faq">FAQ</NavLink>
+              <NavLink
+                to="/faq"
+                className={({ isActive }) =>
+                  isActive ? "text-secondary font-semibold" : "text-white"
+                }
+              >
+                FAQ
+              </NavLink>
             </li>
-            <li>
-              <NavLink to="/dashboard">Dashboard</NavLink>
-            </li>
-            {/* {role === "Hr" && hrLinks} */}
-            {role === "Employee" && employeeLinks}
+
+            {/* Role based links */}
+            {user && role === "Hr" && hrLinks}
+            {user && role === "Employee" && employeeLinks}
           </ul>
         </div>
 
