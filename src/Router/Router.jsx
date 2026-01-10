@@ -1,110 +1,68 @@
 import { createBrowserRouter } from "react-router";
+
+// layouts
 import RootLayout from "../Layouts/RootLayout";
-import HomeRoot from "../pages/Home/HomeRoot/HomeRoot";
 import AuthLayout from "../Layouts/AuthLayout";
+import DashboardLayout from "../Layouts/DashboardLayout";
+
+// public pages
+import HomeRoot from "../pages/Home/HomeRoot/HomeRoot";
+import About from "../pages/Home/About";
+import FAQ from "../pages/Home/FAQ";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+
+// auth pages
 import Login from "../pages/Auth/Login";
 import HrRegister from "../pages/Auth/HrRegister";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import EmployeeRegister from "../pages/Auth/EmployeeRegister";
+
+// dashboard common
+import DashboardHome from "../Components/DashboardHome";
+import Profile from "../pages/Home/Profile";
+
+// hr pages
 import AssetList from "../pages/HrLinks/AssetList";
+import AddAsset from "../pages/HrLinks/AddAsset";
 import AllRequests from "../pages/HrLinks/AllRequests";
 import AllEmployee from "../pages/HrLinks/AllEmployee";
-import AddAsset from "../pages/HrLinks/AddAsset";
-import PrivateRoute from "./PrivateRoute";
-import EmployeeRoute from "./EmployeeRoute";
+import PackageUpdate from "../pages/HrLinks/PackageUpdate";
+import PaymentSuccess from "../pages/HrLinks/Payment/PaymentSuccess";
+
+// employee pages
 import MyAssets from "../pages/EmployeeLinks.jsx/MyAssets";
 import MyTeam from "../pages/EmployeeLinks.jsx/MyTeam";
 import RequestAsset from "../pages/EmployeeLinks.jsx/RequestAsset";
+
+// route guards
+import PrivateRoute from "./PrivateRoute";
 import HrRouter from "./HrRouter";
-import PackageUpdate from "../pages/HrLinks/PackageUpdate";
-import PaymentSuccess from "../pages/HrLinks/Payment/PaymentSuccess";
-import Profile from "../pages/Home/Profile";
+import EmployeeRoute from "./EmployeeRoute";
 import Recharts from "../pages/Home/Recharts";
-import About from "../pages/Home/About";
-import FAQ from "../pages/Home/FAQ";
-import DashboardLayout from "../Layouts/DashboardLayout";
-import DashboardHome from "../Components/DashboardHome";
+
 export const router = createBrowserRouter([
+  // ================= PUBLIC LAYOUT =================
   {
     path: "/",
-    Component: RootLayout,
+    element: <RootLayout />,
     children: [
-      {
-        index: true,
-        Component: HomeRoot,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-
-      {
-        path: "/faq",
-        element: <FAQ />,
-      },
-      {
-        path: "/profile",
-        element: (
-          <PrivateRoute>
-            <Profile />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/recharts",
-        element: (
-          <HrRouter>
-            <PrivateRoute>
-              <Recharts />
-            </PrivateRoute>
-          </HrRouter>
-        ),
-      },
-      // hr route
-
-      {
-        path: "/payment/payment-success",
-        element: (
-          <HrRouter>
-            <PrivateRoute>
-              <PaymentSuccess />
-            </PrivateRoute>
-          </HrRouter>
-        ),
-      },
-      // employee route
-      {
-        path: "/my-assets",
-        element: (
-          <EmployeeRoute>
-            <PrivateRoute>
-              <MyAssets />
-            </PrivateRoute>
-          </EmployeeRoute>
-        ),
-      },
-      {
-        path: "/my-team",
-        element: (
-          <EmployeeRoute>
-            <PrivateRoute>
-              <MyTeam />
-            </PrivateRoute>
-          </EmployeeRoute>
-        ),
-      },
-      {
-        path: "/request-asset",
-        element: (
-          <EmployeeRoute>
-            <PrivateRoute>
-              <RequestAsset />
-            </PrivateRoute>
-          </EmployeeRoute>
-        ),
-      },
+      { index: true, element: <HomeRoot /> },
+      { path: "about", element: <About /> },
+      { path: "faq", element: <FAQ /> },
     ],
   },
+
+  // ================= AUTH LAYOUT =================
+  {
+    path: "/",
+    element: <AuthLayout />,
+    children: [
+      { path: "login", element: <Login /> },
+      { path: "register-hr", element: <HrRegister /> },
+      { path: "register-employee", element: <EmployeeRegister /> },
+    ],
+  },
+
+  // ================= DASHBOARD LAYOUT =================
   {
     path: "/dashboard",
     element: (
@@ -113,52 +71,109 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // overview
+      { index: true, element: <DashboardHome /> },
+
+      // profile (common)
       {
-        index: true,
-        element: <DashboardHome />,
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
+
+      // -------- HR ROUTES --------
       {
         path: "asset-list",
-        element: <AssetList />,
+        element: (
+          <HrRouter>
+            <AssetList />
+          </HrRouter>
+        ),
       },
       {
         path: "asset-add",
-        element: <AddAsset />,
+        element: (
+          <HrRouter>
+            <AddAsset />
+          </HrRouter>
+        ),
       },
       {
         path: "all-requests",
-        element: <AllRequests />,
+        element: (
+          <HrRouter>
+            <AllRequests />
+          </HrRouter>
+        ),
       },
       {
         path: "all-employee",
-        element: <AllEmployee />,
+        element: (
+          <HrRouter>
+            <AllEmployee />
+          </HrRouter>
+        ),
       },
       {
         path: "package-update",
-        element: <PackageUpdate />,
+        element: (
+          <HrRouter>
+            <PackageUpdate />
+          </HrRouter>
+        ),
+      },
+      {
+        path: "payment/payment-success",
+        element: (
+          <HrRouter>
+            <PaymentSuccess />
+          </HrRouter>
+        ),
+      },
+      {
+        path: "recharts",
+        element: (
+          <HrRouter>
+            <Recharts />
+          </HrRouter>
+        ),
+      },
+
+      // -------- EMPLOYEE ROUTES --------
+      {
+        path: "my-assets",
+        element: (
+          <EmployeeRoute>
+            <MyAssets />
+          </EmployeeRoute>
+        ),
+      },
+      {
+        path: "my-team",
+        element: (
+          <EmployeeRoute>
+            <MyTeam />
+          </EmployeeRoute>
+        ),
+      },
+      {
+        path: "request-asset",
+        element: (
+          <EmployeeRoute>
+            <RequestAsset />
+          </EmployeeRoute>
+        ),
       },
     ],
   },
-  {
-    path: "/",
-    Component: AuthLayout,
-    children: [
-      {
-        path: "login",
-        Component: Login,
-      },
-      {
-        path: "register-hr",
-        Component: HrRegister,
-      },
-      {
-        path: "register-employee",
-        Component: EmployeeRegister,
-      },
-    ],
-  },
+
+  // ================= FALLBACK =================
+
   {
     path: "*",
-    Component: ErrorPage,
+    element: <ErrorPage />,
   },
 ]);

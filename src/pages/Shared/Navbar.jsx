@@ -90,7 +90,7 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="text-black">
+              <li className="">
                 <NavLink
                   to="/about"
                   className={({ isActive }) =>
@@ -135,13 +135,13 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="about">About</NavLink>
+              <NavLink to="/about">About</NavLink>
             </li>
             <li>
-              <NavLink to="faq">FAQ</NavLink>
+              <NavLink to="/faq">FAQ</NavLink>
             </li>
             <li>
-              <NavLink to="dashboard">Dashboard</NavLink>
+              <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
             {/* {role === "Hr" && hrLinks} */}
             {role === "Employee" && employeeLinks}
@@ -185,12 +185,12 @@ const Navbar = () => {
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 text-black"
                 >
                   <li>
-                    <NavLink to="/profile">Profile</NavLink>
+                    <NavLink to="/dashboard/profile">Profile</NavLink>
                   </li>
 
                   {role === "Hr" && (
                     <li>
-                      <NavLink to="/recharts">Analytics</NavLink>
+                      <NavLink to="/dashboard/recharts">Analytics</NavLink>
                     </li>
                   )}
                 </ul>
