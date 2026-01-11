@@ -37,7 +37,7 @@ import RequestAsset from "../pages/EmployeeLinks.jsx/RequestAsset";
 import PrivateRoute from "./PrivateRoute";
 import HrRouter from "./HrRouter";
 import EmployeeRoute from "./EmployeeRoute";
-import Recharts from "../pages/Home/Recharts";
+// import Recharts from "../pages/Home/Recharts";
 import Contact from "../pages/Home/Contact";
 import AboutPage from "../pages/Home/AboutPage";
 
@@ -139,14 +139,14 @@ export const router = createBrowserRouter([
           </HrRouter>
         ),
       },
-      {
-        path: "recharts",
-        element: (
-          <HrRouter>
-            <Recharts />
-          </HrRouter>
-        ),
-      },
+      // {
+      //   path: "recharts",
+      //   element: (
+      //     <HrRouter>
+      //       <Recharts />
+      //     </HrRouter>
+      //   ),
+      // },
 
       // -------- EMPLOYEE ROUTES --------
       {

@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthProvider";
-import useRole from "../../Hooks/useRole";
+// import useRole from "../../Hooks/useRole";
 import Logo from "../../Components/Logo";
 import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = ({ onMenuClick = () => {} }) => {
   const { user, logOut } = useContext(AuthContext);
-  const [role] = useRole();
+  // const [role] = useRole();
   const location = useLocation();
 
   const isDashboard = location.pathname.startsWith("/dashboard");
@@ -137,15 +137,13 @@ const Navbar = ({ onMenuClick = () => {} }) => {
               </div>
 
               <ul className="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black z-[9999]">
-                <li>
+                <li className="btnPrimary">
                   <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
 
-                {role === "Hr" && (
-                  <li>
-                    <NavLink to="/dashboard/recharts">Analytics</NavLink>
-                  </li>
-                )}
+                {/* {role === "Hr" && (
+                 
+                )} */}
 
                 <li>
                   <button
