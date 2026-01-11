@@ -5,9 +5,9 @@ import useRole from "../Hooks/useRole";
 const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
   const [role] = useRole();
 
-  const baseClass = "block px-4 py-2 rounded-lg transition-colors duration-200";
-  const activeClass = "bg-secondary text-black font-semibold";
-  const inactiveClass = "hover:bg-zinc-800";
+  const base = "block px-4 py-2 rounded-lg transition-colors duration-200";
+  const active = "bg-secondary text-black font-semibold";
+  const inactive = "hover:bg-zinc-800";
 
   return (
     <aside
@@ -22,31 +22,30 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
       `}
     >
       {/* Header */}
-      <div className="p-6 text-xl font-bold border-b border-zinc-700 shrink-0">
+      <div className="p-6 text-xl font-bold border-b border-zinc-700">
         Dashboard
       </div>
 
       {/* Menu */}
       <nav className="flex-1 overflow-y-auto p-4 space-y-2">
-        {/* ===== COMMON (Overview) ===== */}
         <NavLink
           to="/dashboard"
           end
           onClick={() => setIsOpen(false)}
           className={({ isActive }) =>
-            `${baseClass} ${isActive ? activeClass : inactiveClass}`
+            `${base} ${isActive ? active : inactive}`
           }
         >
           Overview
         </NavLink>
 
-        {/* ===== HR LINKS ===== */}
         {role === "Hr" && (
           <>
             <NavLink
               to="/dashboard/asset-list"
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `${baseClass} ${isActive ? activeClass : inactiveClass}`
+                `${base} ${isActive ? active : inactive}`
               }
             >
               Asset List
@@ -54,8 +53,9 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
 
             <NavLink
               to="/dashboard/asset-add"
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `${baseClass} ${isActive ? activeClass : inactiveClass}`
+                `${base} ${isActive ? active : inactive}`
               }
             >
               Add Asset
@@ -63,8 +63,9 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
 
             <NavLink
               to="/dashboard/all-requests"
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `${baseClass} ${isActive ? activeClass : inactiveClass}`
+                `${base} ${isActive ? active : inactive}`
               }
             >
               All Requests
@@ -72,8 +73,9 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
 
             <NavLink
               to="/dashboard/all-employee"
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `${baseClass} ${isActive ? activeClass : inactiveClass}`
+                `${base} ${isActive ? active : inactive}`
               }
             >
               My Employees
@@ -81,8 +83,9 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
 
             <NavLink
               to="/dashboard/package-update"
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `${baseClass} ${isActive ? activeClass : inactiveClass}`
+                `${base} ${isActive ? active : inactive}`
               }
             >
               Update Package
@@ -90,13 +93,13 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
           </>
         )}
 
-        {/* ===== EMPLOYEE LINKS ===== */}
         {role === "Employee" && (
           <>
             <NavLink
               to="/dashboard/my-assets"
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `${baseClass} ${isActive ? activeClass : inactiveClass}`
+                `${base} ${isActive ? active : inactive}`
               }
             >
               My Assets
@@ -104,8 +107,9 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
 
             <NavLink
               to="/dashboard/my-team"
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `${baseClass} ${isActive ? activeClass : inactiveClass}`
+                `${base} ${isActive ? active : inactive}`
               }
             >
               My Team
@@ -113,8 +117,9 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
 
             <NavLink
               to="/dashboard/request-asset"
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `${baseClass} ${isActive ? activeClass : inactiveClass}`
+                `${base} ${isActive ? active : inactive}`
               }
             >
               Request Asset
@@ -123,8 +128,8 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
         )}
       </nav>
 
-      {/* Profile (common) */}
-      <div className="border-t border-zinc-700 p-4 shrink-0">
+      {/* Profile – ALWAYS BOTTOM */}
+      <div className="border-t border-zinc-700 p-2 mt-auto">
         <NavLink
           to="/dashboard/profile"
           onClick={() => setIsOpen(false)}
@@ -133,7 +138,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
           <div className="w-10 h-10 rounded-full bg-secondary text-black flex items-center justify-center font-bold">
             P
           </div>
-          <p className="text-sm text-zinc-300 font-semibold">View Profile</p>
+          <span className="text-sm font-semibold">View Profile</span>
         </NavLink>
       </div>
     </aside>

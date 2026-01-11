@@ -8,7 +8,7 @@ const RootLayout = () => {
     <div className="bg-[#eaeced] roboto">
       <div className="bg-[#eaeced]">
         <Navbar />
-        <div className="mt-19 ">
+        <div className="">
           <Outlet />
         </div>
         <Footer />

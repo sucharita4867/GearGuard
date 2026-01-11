@@ -109,7 +109,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
       {/* Bottom Bar */}
       <div className="border-t border-white/20 py-5 text-center text-sm text-white/70">
         © {new Date().getFullYear()} GearGuard. All Rights Reserved.

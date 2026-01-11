@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const Banner = () => {
   return (
     <div
-      className="relative mt-10 md:p-10 w-11/12 mx-auto h-[70vh] bg-cover bg-center flex items-center rounded-xl"
+      className="relative  md:p-10 w-11/12 mx-auto h-[70vh] bg-cover bg-center flex items-center rounded-xl"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=60')`,
       }}
