@@ -165,7 +165,7 @@ const RequestAsset = () => {
                   : "Request Asset"}
               </button> */}
               <button
-                onClick={() => navigate(`/dashboard/asset/${asset._id}`)}
+                onClick={() => navigate(`/dashboard/assets/${asset._id}`)}
                 className="btn btnPrimary btn-sm w-full"
               >
                 Asset Details
