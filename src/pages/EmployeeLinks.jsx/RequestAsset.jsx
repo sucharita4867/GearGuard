@@ -1,17 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+// import { useContext, useState } from "react";
+// import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
 import { AuthContext } from "../../Context/AuthProvider";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import { useNavigate } from "react-router";
 
 const RequestAsset = () => {
-  const [selectedAsset, setSelectedAsset] = useState(null);
-  const [requestedAssets, setRequestedAssets] = useState([]);
-  const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
+  // const [selectedAsset, setSelectedAsset] = useState(null);
+  // const [requestedAssets, setRequestedAssets] = useState([]);
+  // const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxios();
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const { data: assets = [], isLoading } = useQuery({
     queryKey: ["employee-assets"],
     queryFn: async () => {
@@ -19,62 +21,62 @@ const RequestAsset = () => {
       return res.data;
     },
   });
-  // console.log(assets);
+  console.log(assets);
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
-  const handleRequest = async (data) => {
-    // console.log(data);
-    const requestData = {
-      assetId: selectedAsset._id,
-      assetName: selectedAsset.productName,
-      assetType: selectedAsset.productType,
-      assetImage: selectedAsset.productImage,
-      requesterName: user.displayName,
-      requesterEmail: user.email,
-      hrEmail: selectedAsset.hrEmail,
-      companyName: selectedAsset.companyName,
-      note: data.note || "",
-      requestDate: new Date(),
-      requestStatus: "pending",
-      approvalDate: null,
-      processedBy: null,
-    };
+  // const handleRequest = async (data) => {
+  //   // console.log(data);
+  //   const requestData = {
+  //     assetId: selectedAsset._id,
+  //     assetName: selectedAsset.productName,
+  //     assetType: selectedAsset.productType,
+  //     assetImage: selectedAsset.productImage,
+  //     requesterName: user.displayName,
+  //     requesterEmail: user.email,
+  //     hrEmail: selectedAsset.hrEmail,
+  //     companyName: selectedAsset.companyName,
+  //     note: data.note || "",
+  //     requestDate: new Date(),
+  //     requestStatus: "pending",
+  //     approvalDate: null,
+  //     processedBy: null,
+  //   };
 
-    // console.log("Request Submitted:", requestData);
-    // console.log("selectedAsset:", selectedAsset);
+  //   // console.log("Request Submitted:", requestData);
+  //   // console.log("selectedAsset:", selectedAsset);
 
-    const res = await axiosPublic.post("/request", requestData);
-    if (res.data.insertedId || res.data.success) {
-      Swal.fire({
-        icon: "success",
-        title: "Request Sent!",
-        text: "Your asset request has been submitted.",
-        timer: 2000,
-        showConfirmButton: false,
-      });
+  //   const res = await axiosPublic.post("/request", requestData);
+  //   if (res.data.insertedId || res.data.success) {
+  //     Swal.fire({
+  //       icon: "success",
+  //       title: "Request Sent!",
+  //       text: "Your asset request has been submitted.",
+  //       timer: 2000,
+  //       showConfirmButton: false,
+  //     });
 
-      setRequestedAssets((prev) => [...prev, selectedAsset._id]);
-    } else {
-      Swal.fire({
-        icon: "warning",
-        title: "Already Requested!",
-        text: res.data.message,
-        timer: 2000,
-        showConfirmButton: false,
-      });
-    }
+  //     setRequestedAssets((prev) => [...prev, selectedAsset._id]);
+  //   } else {
+  //     Swal.fire({
+  //       icon: "warning",
+  //       title: "Already Requested!",
+  //       text: res.data.message,
+  //       timer: 2000,
+  //       showConfirmButton: false,
+  //     });
+  //   }
 
-    reset();
-    setSelectedAsset(null);
-    document.getElementById("request_modal").close();
-  };
+  //   reset();
+  //   setSelectedAsset(null);
+  //   document.getElementById("request_modal").close();
+  // };
 
-  const openModal = (asset) => {
-    setSelectedAsset(asset);
-    document.getElementById("request_modal").showModal();
-  };
+  // const openModal = (asset) => {
+  //   setSelectedAsset(asset);
+  //   document.getElementById("request_modal").showModal();
+  // };
 
   return (
     <div className="w-11/12 mx-auto py-10">
@@ -132,18 +134,18 @@ const RequestAsset = () => {
               </div>
 
               {/* company */}
-              <div className="flex items-center justify-between text-xs text-gray-500">
+              {/* <div className="flex items-center justify-between text-xs text-gray-500">
                 <span>Company name</span>
                 <span>{asset.companyName}</span>
-              </div>
+              </div> */}
               {/* Date */}
-              <div className="flex items-center justify-between text-xs text-gray-500">
+              {/* <div className="flex items-center justify-between text-xs text-gray-500">
                 <span>Added</span>
                 <span>{new Date(asset.dateAdded).toLocaleDateString()}</span>
-              </div>
+              </div> */}
 
               {/* Button */}
-              <button
+              {/* <button
                 disabled={
                   asset.availableQuantity === 0 ||
                   requestedAssets.includes(asset._id)
@@ -161,6 +163,12 @@ const RequestAsset = () => {
                   : requestedAssets.includes(asset._id)
                   ? "Requested"
                   : "Request Asset"}
+              </button> */}
+              <button
+                onClick={() => navigate(`/dashboard/asset/${asset._id}`)}
+                className="btn btnPrimary btn-sm w-full"
+              >
+                Asset Details
               </button>
             </div>
           </div>
@@ -168,7 +176,7 @@ const RequestAsset = () => {
       </div>
 
       {/* Modal */}
-      <dialog id="request_modal" className="modal">
+      {/* <dialog id="request_modal" className="modal">
         <div className="modal-box">
           {selectedAsset && (
             <>
@@ -203,7 +211,7 @@ const RequestAsset = () => {
             </button>
           </div>
         </div>
-      </dialog>
+      </dialog> */}
     </div>
   );
 };

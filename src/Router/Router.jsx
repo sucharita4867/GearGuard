@@ -40,6 +40,7 @@ import EmployeeRoute from "./EmployeeRoute";
 // import Recharts from "../pages/Home/Recharts";
 import Contact from "../pages/Home/Contact";
 import AboutPage from "../pages/Home/AboutPage";
+import AssetsDetails from "../pages/EmployeeLinks.jsx/AssetsDetails";
 
 export const router = createBrowserRouter([
   // ================= PUBLIC LAYOUT =================
@@ -170,6 +171,14 @@ export const router = createBrowserRouter([
         element: (
           <EmployeeRoute>
             <RequestAsset />
+          </EmployeeRoute>
+        ),
+      },
+      {
+        path: "/dashboard/asset/:id",
+        element: (
+          <EmployeeRoute>
+            <AssetsDetails />
           </EmployeeRoute>
         ),
       },
