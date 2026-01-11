@@ -19,7 +19,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="w-full py-10 border border-black">
+    <section className="w-full py-10">
       <div className="w-11/12 mx-auto text-center">
         {/* Heading */}
         <motion.h2

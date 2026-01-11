@@ -28,7 +28,7 @@ const Features = () => {
   ];
 
   return (
-    <section className=" py-10 border border-black ">
+    <section className=" py-10 ">
       <div className="w-11/12 rounded-xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

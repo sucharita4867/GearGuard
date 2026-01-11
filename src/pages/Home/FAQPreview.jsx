@@ -1,50 +1,31 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
-const FAQ = () => {
+const FAQPreview = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
       question: "Is my data secure on GearGuard?",
       answer:
-        "Yes. All data is securely stored using modern encryption and protected cloud infrastructure to ensure privacy and reliability.",
+        "Yes. All data is encrypted and securely stored using modern cloud infrastructure.",
     },
     {
-      question: "Do I need to be an HR to manage assets?",
+      question: "Do employees need HR permission to get assets?",
       answer:
-        "Yes. Only HR managers have permission to add, update, or delete assets. Employees can only request and view assigned assets.",
+        "Yes. Employees can request assets, but only HR managers can approve them.",
     },
     {
-      question: "Can employees belong to multiple companies?",
+      question: "Can I upgrade my package later?",
       answer:
-        "Yes. GearGuard supports multi-company affiliation, allowing employees to work with more than one organization if permitted.",
+        "Absolutely. HR managers can upgrade or change their package anytime.",
     },
     {
-      question: "Can I upgrade or downgrade my package later?",
+      question: "Is GearGuard suitable for small teams?",
       answer:
-        "Absolutely. HR managers can upgrade or change their subscription package anytime from the dashboard.",
-    },
-    {
-      question: "How does asset request approval work?",
-      answer:
-        "Employees can request assets, and HR managers review and approve or reject requests through the dashboard in real time.",
-    },
-    {
-      question: "Is GearGuard suitable for small businesses?",
-      answer:
-        "Yes. GearGuard is scalable and designed for startups, small teams, and large enterprises alike.",
-    },
-    {
-      question: "Can I track asset usage history?",
-      answer:
-        "Yes. HR managers can view detailed asset usage history, assignments, and availability from the asset list.",
-    },
-    {
-      question: "Do you provide customer support?",
-      answer:
-        "Yes. Our support team is available to assist you with onboarding, technical issues, and general queries.",
+        "Yes. GearGuard is scalable and works well for small teams and large companies.",
     },
   ];
 
@@ -66,13 +47,13 @@ const FAQ = () => {
           Frequently Asked Questions
         </h2>
         <p className="text-gray-600 mt-3">
-          Find answers to the most common questions about using GearGuard.
+          Quick answers to common questions about GearGuard.
         </p>
       </motion.div>
 
-      {/* FAQ List */}
-      <div className="max-w-4xl mx-auto space-y-4">
-        {faqs.map((faq, index) => (
+      {/* FAQ Items */}
+      <div className="max-w-3xl mx-auto space-y-4">
+        {faqs.slice(0, 3).map((faq, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
@@ -83,29 +64,36 @@ const FAQ = () => {
             onClick={() => toggleFAQ(index)}
           >
             <div className="flex justify-between items-center p-5">
-              <h3 className="text-lg font-semibold text-gray-800">
+              <h3 className="text-base md:text-lg font-semibold text-gray-800">
                 {faq.question}
               </h3>
-              <span className="text-2xl text-primary font-bold">
+              <span className="text-xl font-bold text-primary">
                 {openIndex === index ? "−" : "+"}
               </span>
             </div>
 
             {openIndex === index && (
-              <motion.div
+              <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
                 className="px-5 pb-5 text-gray-600"
               >
                 {faq.answer}
-              </motion.div>
+              </motion.p>
             )}
           </motion.div>
         ))}
+      </div>
+
+      {/* View All Button */}
+      <div className="text-center mt-8">
+        <NavLink to="/faq" className="btnOutline">
+          View All FAQs
+        </NavLink>
       </div>
     </section>
   );
 };
 
-export default FAQ;
+export default FAQPreview;

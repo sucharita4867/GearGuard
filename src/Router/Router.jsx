@@ -39,6 +39,7 @@ import HrRouter from "./HrRouter";
 import EmployeeRoute from "./EmployeeRoute";
 import Recharts from "../pages/Home/Recharts";
 import Contact from "../pages/Home/Contact";
+import AboutPage from "../pages/Home/AboutPage";
 
 export const router = createBrowserRouter([
   // ================= PUBLIC LAYOUT =================
@@ -47,7 +48,7 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <HomeRoot /> },
-      { path: "about", element: <About /> },
+      { path: "aboutPage", element: <AboutPage /> },
       {
         path: "contact",
         element: <Contact />,

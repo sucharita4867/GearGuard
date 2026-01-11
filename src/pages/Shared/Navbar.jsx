@@ -109,7 +109,7 @@ const Navbar = () => {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/about">About</NavLink>
+                <NavLink to="/aboutPage">About</NavLink>
               </li>
               <li>
                 <NavLink to="/contact">Contact</NavLink>
@@ -144,7 +144,7 @@ const Navbar = () => {
 
             <li>
               <NavLink
-                to="/about"
+                to="/aboutPage"
                 className={({ isActive }) =>
                   isActive ? "text-secondary font-semibold" : "text-white"
                 }
