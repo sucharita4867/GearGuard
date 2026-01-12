@@ -3,8 +3,10 @@ import { AuthContext } from "../../Context/AuthProvider";
 import useAxios from "../../Hooks/useAxios";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useRole from "../../Hooks/useRole";
 
 const Profile = () => {
+  const [userRole] = useRole();
   const { user, setUser, updateUserProfile } = useContext(AuthContext);
   const axiosPublic = useAxios();
 
@@ -102,7 +104,7 @@ const Profile = () => {
       showConfirmButton: false,
     });
   };
-
+  // console.log(userRole);
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-5">
       <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
@@ -145,6 +147,15 @@ const Profile = () => {
             <input
               type="email"
               value={user?.email}
+              readOnly
+              className="input input-bordered w-full bg-gray-100"
+            />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">Role</label>
+            <input
+              type="text"
+              value={userRole}
               readOnly
               className="input input-bordered w-full bg-gray-100"
             />

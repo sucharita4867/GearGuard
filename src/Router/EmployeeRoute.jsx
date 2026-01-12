@@ -2,8 +2,8 @@ import { Navigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import useRole from "../Hooks/useRole";
-import Forbidden from "../Components/Forbidden ";
 import LoadingSpinner from "../Components/LoadingSpinner";
+import Forbidden from "../Components/Forbidden ";
 
 const EmployeeRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);

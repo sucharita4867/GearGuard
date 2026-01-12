@@ -75,7 +75,7 @@ const MyAssets = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto py-10 my-18">
+    <div className="w-11/12 mx-auto py-10 ">
       {/* Page Title */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold text-primary">My Assigned Assets</h2>

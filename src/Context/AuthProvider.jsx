@@ -51,53 +51,76 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, profile);
   };
 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+  //     try {
+  //       if (currentUser) {
+  //         await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+  //           method: "POST",
+  //           headers: { "content-type": "application/json" },
+  //           body: JSON.stringify({
+  //             email: currentUser.email,
+  //             name: currentUser.displayName,
+  //             image: currentUser.photoURL,
+  //           }),
+  //         });
+
+  //         const res = await fetch(`${import.meta.env.VITE_API_URL}/getToken`, {
+  //           method: "POST",
+  //           headers: { "content-type": "application/json" },
+  //           body: JSON.stringify({ email: currentUser.email }),
+  //         });
+
+  //         if (!res.ok) {
+  //           throw new Error("Token fetch failed");
+  //         }
+
+  //         const data = await res.json();
+
+  //         if (data?.token) {
+  //           localStorage.setItem("token", data.token);
+  //           setUser(currentUser);
+  //         } else {
+  //           throw new Error("No token received");
+  //         }
+  //       } else {
+  //         localStorage.removeItem("token");
+  //         setUser(null);
+  //       }
+  //     } catch (error) {
+  //       console.error("Auth error:", error);
+  //       localStorage.removeItem("token");
+  //       await signOut(auth);
+  //       setUser(null);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   });
+
+  //   return () => unsubscribe();
+  // }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       try {
         if (currentUser) {
-          await fetch(`${import.meta.env.VITE_API_URL}/users`, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-              email: currentUser.email,
-              name: currentUser.displayName,
-              image: currentUser.photoURL,
-              role: "Employee",
-            }),
-          });
-
           const res = await fetch(`${import.meta.env.VITE_API_URL}/getToken`, {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ email: currentUser.email }),
           });
 
-          if (!res.ok) {
-            throw new Error("Token fetch failed");
-          }
-
           const data = await res.json();
-
-          if (data?.token) {
-            localStorage.setItem("token", data.token);
-            setUser(currentUser);
-          } else {
-            throw new Error("No token received");
-          }
+          localStorage.setItem("token", data.token);
+          setUser(currentUser);
         } else {
           localStorage.removeItem("token");
           setUser(null);
         }
-      } catch (error) {
-        console.error("Auth error:", error);
-        localStorage.removeItem("token");
-        await signOut(auth);
-        setUser(null);
       } finally {
         setLoading(false);
       }
     });
-
     return () => unsubscribe();
   }, []);
 

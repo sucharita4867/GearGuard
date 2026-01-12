@@ -178,8 +178,6 @@ const EmployeeRegister = () => {
                 <Link to="/login">Login</Link>
               </span>
             </p>
-            <h2 className="text-center ">OR</h2>
-            <SocialLogin />
           </form>
         </div>
       </div>

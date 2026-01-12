@@ -175,7 +175,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/assets/:id",
+        path: "assets/:id",
         element: (
           <EmployeeRoute>
             <AssetsDetails />
