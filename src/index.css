@@ -34,3 +34,7 @@ body {
 .btnOutline {
       @apply px-6 py-2 text-center rounded-full text-base font-semibold bg-transparent text-[#1da03f] border border-[#1da03f] hover:bg-[#1da03f] hover:text-white transition duration-300;
 }
+
+.profileBtn {
+      @apply px-4 py-1 text-center rounded-full text-base font-semibold bg-transparent text-[#1da03f] border border-[#1da03f] hover:bg-[#1da03f] hover:text-white transition duration-300;
+}

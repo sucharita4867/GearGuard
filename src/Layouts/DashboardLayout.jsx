@@ -13,7 +13,7 @@ const DashboardLayout = () => {
       <div className="flex">
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
-        <main className="flex-1 md:ml-64 mt-16">
+        <main className="flex-1 md:ml-64 mt-16 bg-[#EAECED]">
           <Outlet />
         </main>
       </div>

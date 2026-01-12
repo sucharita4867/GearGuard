@@ -20,7 +20,7 @@ const AssetDetails = () => {
     error,
   } = useQuery({
     queryKey: ["asset-details", id],
-    enabled: !!id, // id না থাকলে call করবে না
+    enabled: !!id,
     retry: false,
     queryFn: async () => {
       const res = await axiosSecure.get(`/assets/${id}`);

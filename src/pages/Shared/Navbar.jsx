@@ -137,7 +137,7 @@ const Navbar = ({ onMenuClick = () => {} }) => {
               </div>
 
               <ul className="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black z-[9999]">
-                <li className="btnPrimary">
+                <li className="btnPrimary btn btn-sm">
                   <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
 

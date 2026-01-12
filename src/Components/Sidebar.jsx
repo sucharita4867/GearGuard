@@ -1,21 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router";
 import useRole from "../Hooks/useRole";
+import { AuthContext } from "../Context/AuthProvider";
+
+import {
+  FaHome,
+  FaChartPie,
+  FaBoxes,
+  FaPlusCircle,
+  FaClipboardList,
+  FaUsers,
+  FaCreditCard,
+  FaBriefcase,
+  FaUserFriends,
+  FaEdit,
+  FaUser,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
   const [role] = useRole();
+  const { logOut } = useContext(AuthContext);
 
-  const base = "block px-4 py-2 rounded-lg transition-colors duration-200";
-  const active = "bg-secondary text-black font-semibold";
+  const base =
+    "flex items-center gap-3 px-4 py-2 rounded-lg transition-colors duration-200";
+  const active = "bg-secondary text-white font-semibold";
   const inactive = "hover:bg-zinc-800";
+
+  const handleLogout = () => {
+    logOut();
+    setIsOpen(false);
+  };
 
   return (
     <>
-      {/* ✅ MOBILE OVERLAY */}
+      {/* MOBILE OVERLAY */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          className="fixed inset-0 bg-black/80 z-40 md:hidden"
         />
       )}
 
@@ -30,13 +53,19 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
           md:translate-x-0
         `}
       >
-        {/* Header */}
-        <div className="p-6 text-xl font-bold border-b border-zinc-700">
-          Dashboard
-        </div>
-
-        {/* Menu */}
+        {/* MENU */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+          <NavLink
+            to="/"
+            end
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `${base} ${isActive ? active : inactive}`
+            }
+          >
+            <FaHome /> Home
+          </NavLink>
+
           <NavLink
             to="/dashboard"
             end
@@ -45,7 +74,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
               `${base} ${isActive ? active : inactive}`
             }
           >
-            Overview
+            <FaChartPie /> Overview
           </NavLink>
 
           {role === "Hr" && (
@@ -57,7 +86,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
                   `${base} ${isActive ? active : inactive}`
                 }
               >
-                Asset List
+                <FaBoxes /> Asset List
               </NavLink>
 
               <NavLink
@@ -67,7 +96,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
                   `${base} ${isActive ? active : inactive}`
                 }
               >
-                Add Asset
+                <FaPlusCircle /> Add Asset
               </NavLink>
 
               <NavLink
@@ -77,7 +106,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
                   `${base} ${isActive ? active : inactive}`
                 }
               >
-                All Requests
+                <FaClipboardList /> All Requests
               </NavLink>
 
               <NavLink
@@ -87,7 +116,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
                   `${base} ${isActive ? active : inactive}`
                 }
               >
-                My Employees
+                <FaUsers /> My Employees
               </NavLink>
 
               <NavLink
@@ -97,7 +126,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
                   `${base} ${isActive ? active : inactive}`
                 }
               >
-                Update Package
+                <FaCreditCard /> Update Package
               </NavLink>
             </>
           )}
@@ -111,7 +140,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
                   `${base} ${isActive ? active : inactive}`
                 }
               >
-                My Assets
+                <FaBriefcase /> My Assets
               </NavLink>
 
               <NavLink
@@ -121,7 +150,7 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
                   `${base} ${isActive ? active : inactive}`
                 }
               >
-                My Team
+                <FaUserFriends /> My Team
               </NavLink>
 
               <NavLink
@@ -131,24 +160,30 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
                   `${base} ${isActive ? active : inactive}`
                 }
               >
-                Request Asset
+                <FaEdit /> Request Asset
               </NavLink>
             </>
           )}
         </nav>
 
-        {/* Profile bottom */}
-        <div className="border-t border-zinc-700 p-2 mt-auto">
+        {/* PROFILE + LOGOUT */}
+        <div className="border-t border-zinc-700 p-2 space-y-2">
           <NavLink
             to="/dashboard/profile"
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-2 rounded-lg hover:bg-zinc-800"
+            className={`${base} hover:bg-zinc-800`}
           >
-            <div className="w-10 h-10 rounded-full bg-secondary text-black flex items-center justify-center font-bold">
-              P
-            </div>
-            <span className="text-sm font-semibold">View Profile</span>
+            <FaUser />
+            View Profile
           </NavLink>
+
+          <button
+            onClick={handleLogout}
+            className={`${base} text-red-400 w-full hover:bg-zinc-800`}
+          >
+            <FaSignOutAlt />
+            Logout
+          </button>
         </div>
       </aside>
     </>

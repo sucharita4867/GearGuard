@@ -79,7 +79,7 @@ const RequestAsset = () => {
   // };
 
   return (
-    <div className="w-11/12 mx-auto py-10">
+    <div className="w-11/12 mx-auto py-10 ">
       <h2 className="text-3xl font-bold text-primary mb-6">Request an Asset</h2>
 
       {/* Assets Grid */}
