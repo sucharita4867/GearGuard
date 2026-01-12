@@ -11,15 +11,19 @@ import { AuthContext } from "../../Context/AuthProvider";
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
+  // ================= NORMAL LOGIN =================
   const handleLogin = async (data) => {
     try {
       await signIn(data.email, data.password);
+
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -27,11 +31,70 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+
       navigate("/dashboard");
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "Login Failed",
+        text: error.message,
+      });
+    }
+  };
+
+  // ================= DEMO EMPLOYEE LOGIN =================
+  const handleDemoEmployeeLogin = async () => {
+    const email = "riya@gmail.com";
+    const password = "Rr@12345";
+
+    setValue("email", email);
+    setValue("password", password);
+
+    try {
+      await signIn(email, password);
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Demo Employee Login Successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      navigate("/dashboard");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Demo Employee Login Failed",
+        text: error.message,
+      });
+    }
+  };
+
+  // ================= DEMO HR LOGIN =================
+  const handleDemoHrLogin = async () => {
+    const email = "sahil@gamil.com";
+    const password = "Ss@12345";
+
+    setValue("email", email);
+    setValue("password", password);
+
+    try {
+      await signIn(email, password);
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Demo HR Login Successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      navigate("/dashboard");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Demo HR Login Failed",
         text: error.message,
       });
     }
@@ -40,20 +103,19 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen px-4">
       <div className="flex flex-col md:flex-row items-center gap-8 bg-base-200 shadow-2xl rounded-xl p-8">
-        {/* ---- Animation Section ---- */}
+        {/* ===== Animation ===== */}
         <div className="w-64 md:w-80">
-          <Lottie animationData={loginAnimation} loop={true} />
+          <Lottie animationData={loginAnimation} loop />
         </div>
 
-        {/* ---- Form Section ---- */}
+        {/* ===== Form ===== */}
         <div className="card bg-base-100 w-full max-w-sm">
           <form onSubmit={handleSubmit(handleLogin)} className="card-body">
             <div className="text-primary text-center">
               <Logo />
             </div>
-            <p className="text-center mb-4 text-primary text-base">
-              Login to continue
-            </p>
+
+            <p className="text-center mb-4 text-primary">Login to continue</p>
 
             <fieldset className="fieldset space-y-3">
               {/* Email */}
@@ -62,55 +124,67 @@ const Login = () => {
                 <input
                   type="email"
                   className="input input-bordered w-full"
-                  {...register("email", { required: true })}
                   placeholder="Email"
+                  {...register("email", { required: true })}
                 />
                 {errors.email && (
-                  <p className="text-red-600">Email is required</p>
+                  <p className="text-red-600 text-sm">Email is required</p>
                 )}
               </div>
-
               {/* Password */}
               <div>
                 <label className="label">Password</label>
                 <input
                   type="password"
+                  className="input input-bordered w-full"
+                  placeholder="Password"
                   {...register("password", {
                     required: true,
                     minLength: 8,
                     pattern:
                       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%]).{8,}$/,
                   })}
-                  className="input input-bordered w-full"
-                  placeholder="Password"
                 />
                 {errors.password?.type === "required" && (
-                  <p className="text-red-600">Password is required</p>
+                  <p className="text-red-600 text-sm">Password is required</p>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <p className="text-red-600">
-                    Password must be at least 8 characters
+                  <p className="text-red-600 text-sm">
+                    Minimum 8 characters required
                   </p>
                 )}
                 {errors.password?.type === "pattern" && (
-                  <p className="text-red-600">
-                    Password must include uppercase, lowercase, number, and
-                    special character
+                  <p className="text-red-600 text-sm">
+                    Must include uppercase, lowercase, number & special
+                    character
                   </p>
                 )}
               </div>
-
-              {/* Forgot Password */}
-              <div className="text-right">
-                <Link className="link text-sm" to="/forgot-password">
-                  Forgot password?
-                </Link>
-              </div>
-
-              <button className=" btnPrimary w-full mt-1">Login</button>
+              {/* 
+              
+              {/* Login */}
+              <button type="submit" className="btnPrimary w-full">
+                Login
+              </button>
+              {/* Demo Buttons */}
+              <button
+                type="button"
+                onClick={handleDemoEmployeeLogin}
+                className="btn btn-outline btn-secondary w-full"
+              >
+                Demo Employee Login
+              </button>
+              <button
+                type="button"
+                onClick={handleDemoHrLogin}
+                className="btn btn-outline btn-secondary w-full"
+              >
+                Demo HR Login
+              </button>
             </fieldset>
 
-            <p className="text-start text-sm mt-2">
+            {/* Register */}
+            <p className="text-sm mt-2">
               New to GearGuard?
               <Link
                 className="text-blue-700 font-medium underline ml-1"
