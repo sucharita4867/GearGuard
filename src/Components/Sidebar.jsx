@@ -53,7 +53,6 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
           md:translate-x-0
         `}
       >
-        {/* MENU */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
           <NavLink
             to="/"
