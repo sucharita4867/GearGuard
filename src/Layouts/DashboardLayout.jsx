@@ -8,8 +8,6 @@ const DashboardLayout = () => {
 
   return (
     <>
-      {/* <Navbar onMenuClick={() => setIsOpen(true)} /> */}
-
       <div className="flex">
         <Sidebar className="mt-0" isOpen={isOpen} setIsOpen={setIsOpen} />
 
