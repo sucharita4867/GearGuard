@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../pages/Shared/Navbar";
 import Sidebar from "../Components/Sidebar";
 import { Outlet } from "react-router";
 
