@@ -8,12 +8,12 @@ const DashboardLayout = () => {
 
   return (
     <>
-      <Navbar onMenuClick={() => setIsOpen(true)} />
+      {/* <Navbar onMenuClick={() => setIsOpen(true)} /> */}
 
       <div className="flex">
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
-        <main className="flex-1 md:ml-64 mt-16 bg-[#EAECED]">
+        <main className="flex-1 md:ml-64  bg-[#EAECED]">
           <Outlet />
         </main>
       </div>

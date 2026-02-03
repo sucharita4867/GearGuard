@@ -18,8 +18,6 @@ const Login = () => {
     setValue,
     formState: { errors },
   } = useForm();
-
-  // ================= NORMAL LOGIN =================
   const handleLogin = async (data) => {
     try {
       await signIn(data.email, data.password);
@@ -42,7 +40,6 @@ const Login = () => {
     }
   };
 
-  // ================= DEMO EMPLOYEE LOGIN =================
   const handleDemoEmployeeLogin = async () => {
     const email = "riya@gmail.com";
     const password = "Rr@12345";
@@ -71,7 +68,6 @@ const Login = () => {
     }
   };
 
-  // ================= DEMO HR LOGIN =================
   const handleDemoHrLogin = async () => {
     const email = "sahil@gamil.com";
     const password = "Ss@12345";
