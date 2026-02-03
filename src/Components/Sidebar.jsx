@@ -44,8 +44,8 @@ const Sidebar = ({ isOpen = true, setIsOpen = () => {} }) => {
 
       <aside
         className={`
-          fixed left-0 top-16
-          w-64 h-[calc(100vh-4rem)]
+          fixed left-0 top-0
+          w-64  h-screen
           bg-primary text-white z-50
           flex flex-col
           transform transition-transform duration-300
