@@ -11,7 +11,6 @@ import {
 const AboutPage = () => {
   return (
     <section className="w-11/12 mx-auto py-10">
-      {/* ===== TOP INTRO ===== */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +28,6 @@ const AboutPage = () => {
         </p>
       </motion.div>
 
-      {/* ===== MISSION & IMAGE ===== */}
       <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
         {/* Text */}
         <motion.div
@@ -63,7 +61,6 @@ const AboutPage = () => {
         />
       </div>
 
-      {/* ===== WHY CHOOSE US ===== */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +68,7 @@ const AboutPage = () => {
         viewport={{ once: true }}
         className="mb-20"
       >
-        <h2 className="text-2xl md:text-3xl font-semibold text-primary text-center mb-10">
+        <h2 className="text-2xl md:text-3xl font-semibold text-primary text-center mb-8">
           Why Choose GearGuard?
         </h2>
 
@@ -110,7 +107,6 @@ const AboutPage = () => {
         </div>
       </motion.div>
 
-      {/* ===== CTA ===== */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
