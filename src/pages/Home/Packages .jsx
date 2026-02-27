@@ -82,7 +82,7 @@ const Packages = () => {
               <span className="text-sm text-gray-500">/mo</span>
             </motion.p>
 
-            <ul className="text-gray-600 space-y-2 mb-5">
+            <ul className="text-gray-600 space-y-2 mb-3">
               {pkg.features.map((feature, i) => (
                 <motion.li
                   key={i}
