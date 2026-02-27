@@ -13,7 +13,7 @@ const Profile = () => {
   const [name, setName] = useState(user?.displayName || user?.name || "");
   const [dob, setDob] = useState(user?.dob || "");
   const [previewImage, setPreviewImage] = useState(
-    user?.image || user?.photoURL
+    user?.image || user?.photoURL,
   );
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -52,7 +52,7 @@ const Profile = () => {
     mutationFn: async (payload) => {
       const res = await axiosPublic.patch(
         `/user/update/${user?.email}`,
-        payload
+        payload,
       );
       return res.data;
     },
@@ -76,16 +76,13 @@ const Profile = () => {
       payload.image = finalImageUrl;
     }
 
-    // DB update
     await updateDBUser(payload);
 
-    // Firebase update (optional but recommended)
     await updateUserProfile({
       displayName: name,
       photoURL: finalImageUrl,
     });
 
-    // Local user state update
     setUser({
       ...user,
       name,
@@ -104,11 +101,10 @@ const Profile = () => {
       showConfirmButton: false,
     });
   };
-  // console.log(userRole);
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-5">
       <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
-        <h2 className="text-center text-2xl font-semibold mb-5">My Profile</h2>
+        <h2 className="text-center text-3xl font-medium mb-2">My Profile</h2>
 
         {/* Profile Image */}
         <div className="flex flex-col justify-center items-center mb-5">
