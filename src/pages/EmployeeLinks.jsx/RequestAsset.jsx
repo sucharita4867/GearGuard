@@ -28,13 +28,13 @@ const RequestAsset = () => {
 
   // 🔍 SEARCH
   let filteredAssets = assets.filter((asset) =>
-    asset.productName.toLowerCase().includes(search.toLowerCase())
+    asset.productName.toLowerCase().includes(search.toLowerCase()),
   );
 
   // 🧩 FILTER
   if (typeFilter) {
     filteredAssets = filteredAssets.filter(
-      (asset) => asset.productType === typeFilter
+      (asset) => asset.productType === typeFilter,
     );
   }
 
@@ -43,22 +43,20 @@ const RequestAsset = () => {
     filteredAssets.sort((a, b) => a.productName.localeCompare(b.productName));
   } else if (sortBy === "latest") {
     filteredAssets.sort(
-      (a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)
+      (a, b) => new Date(b.dateAdded) - new Date(a.dateAdded),
     );
   }
 
-  // 📄 PAGINATION
   const totalPages = Math.ceil(filteredAssets.length / ITEMS_PER_PAGE);
   const paginatedAssets = filteredAssets.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    currentPage * ITEMS_PER_PAGE,
   );
 
   return (
     <div className="w-11/12 mx-auto py-10 space-y-6">
       <h2 className="text-3xl font-bold text-primary">Request an Asset</h2>
 
-      {/* ================= CONTROLS ================= */}
       <div className="grid md:grid-cols-4 gap-4">
         {/* Search */}
         <input
