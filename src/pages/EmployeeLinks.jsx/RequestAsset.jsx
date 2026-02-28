@@ -95,7 +95,6 @@ const RequestAsset = () => {
         </select>
       </div>
 
-      {/* ================= ASSET GRID ================= */}
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
         {paginatedAssets.map((asset) => (
           <div
@@ -140,7 +139,6 @@ const RequestAsset = () => {
         ))}
       </div>
 
-      {/* ================= PAGINATION ================= */}
       {totalPages > 1 && (
         <div className="flex justify-center gap-2 mt-6">
           {[...Array(totalPages).keys()].map((page) => (
