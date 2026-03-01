@@ -38,7 +38,6 @@ const RequestAsset = () => {
     );
   }
 
-  // 🔃 SORT
   if (sortBy === "name") {
     filteredAssets.sort((a, b) => a.productName.localeCompare(b.productName));
   } else if (sortBy === "latest") {
@@ -58,7 +57,6 @@ const RequestAsset = () => {
       <h2 className="text-3xl font-bold text-primary">Request an Asset</h2>
 
       <div className="grid md:grid-cols-4 gap-4">
-        {/* Search */}
         <input
           type="text"
           placeholder="Search asset..."
