@@ -10,7 +10,6 @@ const RequestAsset = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxios();
 
-  // 🔹 UI States
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [sortBy, setSortBy] = useState("latest");
@@ -26,12 +25,10 @@ const RequestAsset = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  // 🔍 SEARCH
   let filteredAssets = assets.filter((asset) =>
     asset.productName.toLowerCase().includes(search.toLowerCase()),
   );
 
-  // 🧩 FILTER
   if (typeFilter) {
     filteredAssets = filteredAssets.filter(
       (asset) => asset.productType === typeFilter,
