@@ -9,7 +9,6 @@ const HrRouter = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const [role, roleLoading] = useRole();
 
-  // Still signing in (firebase loading)
   if (loading || roleLoading) {
     return <LoadingSpinner />;
   }
