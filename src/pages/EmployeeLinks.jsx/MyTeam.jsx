@@ -46,7 +46,6 @@ const MyTeam = () => {
     if (!emp.dob) return false;
     return new Date(emp.dob).getMonth() === currentMonth;
   });
-  // console.log(visibleEmployees);
 
   return (
     <div className="w-11/12 mx-auto py-10">
