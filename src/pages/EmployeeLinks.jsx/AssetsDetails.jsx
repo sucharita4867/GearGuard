@@ -28,10 +28,8 @@ const AssetDetails = () => {
     },
   });
 
-  // 🔄 Loading
   if (isLoading) return <LoadingSpinner />;
 
-  // ❌ Error (401 / 403 / 404)
   if (isError) {
     return (
       <div className="text-center mt-20 text-red-500">
