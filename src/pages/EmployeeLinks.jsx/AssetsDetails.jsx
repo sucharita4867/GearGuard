@@ -42,7 +42,6 @@ const AssetDetails = () => {
     );
   }
 
-  // ❌ No data
   if (!asset) {
     return (
       <div className="text-center mt-20 text-red-500">Asset not found</div>
