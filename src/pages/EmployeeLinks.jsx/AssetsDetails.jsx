@@ -48,7 +48,6 @@ const AssetDetails = () => {
     );
   }
 
-  // 📤 Submit request
   const handleRequest = async (data) => {
     const requestData = {
       assetId: asset._id,
