@@ -21,7 +21,6 @@ const HrRegister = () => {
 
   const handleRegister = (data) => {
     const { email, name, companyName, password, dob } = data;
-    // console.log(email, name, companyName, photoURl, password, dateOfBirth);
     const profileImg = data.companyLogo[0];
     console.log(profileImg);
 
