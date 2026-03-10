@@ -99,12 +99,10 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen px-4">
       <div className="flex flex-col md:flex-row items-center gap-8 bg-base-200 shadow-2xl rounded-xl p-8">
-        {/* ===== Animation ===== */}
         <div className="w-64 md:w-80">
           <Lottie animationData={loginAnimation} loop />
         </div>
 
-        {/* ===== Form ===== */}
         <div className="card bg-base-100 w-full max-w-sm">
           <form onSubmit={handleSubmit(handleLogin)} className="card-body">
             <div className="text-primary text-center">
