@@ -195,8 +195,8 @@ const Login = () => {
               </Link>
             </p>
 
-            <h2 className="text-center mt-3">OR</h2>
-            <SocialLogin />
+            {/* <h2 className="text-center mt-3">OR</h2>
+            <SocialLogin /> */}
           </form>
         </div>
       </div>
