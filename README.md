@@ -8,7 +8,7 @@
 
 ## Purpose
 
-The main goal of GEARGUARD is to **digitize and simplify corporate asset management**, reduce manual tracking errors, and provide real‑time visibility of assets, employees, and usage statistics.
+The main goal of GEARGUARD is to **digitize and simplify corporate asset management**, reduce manual tracking errors and provide real‑time visibility of assets, employees, and usage statistics.
 
 ---
 
