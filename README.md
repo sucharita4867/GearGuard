@@ -14,8 +14,8 @@ The main goal of GEARGUARD is to **digitize and simplify corporate asset managem
 
 ##  Live Project Links
 
-- **Client (Frontend):** [https://gearguard53.netlify.app]
-- **Server (Backend API):** [https://gear-guard-server.vercel.app]
+- **Client (Frontend):** https://gearguard53.netlify.app
+- **Server (Backend API):** https://gear-guard-server.vercel.app
 
 ---
 
