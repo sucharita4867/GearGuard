@@ -4,7 +4,7 @@
 
 **GEARGUARD** is a full‑stack **Corporate Asset Management System** designed to help organizations manage company assets, employees, and asset distribution efficiently. It provides role‑based access for HR and Employees, secure authentication, asset tracking, request management, and subscription‑based employee limits.
 
----
+--
 
 ## Purpose
 
@@ -56,7 +56,7 @@ The main goal of GEARGUARD is to **digitize and simplify corporate asset managem
 - Subscription‑based employee limits
 - Payment history tracking
 
----
+--
 
 ##  Technologies Used
 
